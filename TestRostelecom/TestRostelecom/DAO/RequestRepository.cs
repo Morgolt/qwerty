@@ -10,33 +10,40 @@ namespace TestRostelecom.DAO
     {
         private RequestDatabaseDataContext db = new RequestDatabaseDataContext();
 
-        public Request GetRequestById(int id)
+        public Requests GetRequestById(int id)
         {
-            return db.Request.Single(x => x.Id == id);
+            return db.Requests.Single(x => x.Id == id);
         }
 
-        public void CreateRequest(Request request)
+        public void CreateRequest(Requests request)
         {
-            db.Request.InsertOnSubmit(request);
+            db.Requests.InsertOnSubmit(request);
             db.SubmitChanges();
         }
 
-        public void DeleteRequest(Request request)
+        public void DeleteRequest(Requests request)
         {
-            db.Request.DeleteOnSubmit(request);
+            db.Requests.DeleteOnSubmit(request);
             db.SubmitChanges();
         }
 
-        public void UpdateRequest(Request request)
+        public void UpdateRequest(Requests request)
         {
-            Request req = db.Request.Single(x => x.Id == request.Id);
+            Requests req = db.Requests.Single(x => x.Id == request.Id);
             req.Address = request.Address;
             req.ClientId = request.ClientId;
             req.CloseDate = request.CloseDate;
             req.Comment = request.Comment;
             req.DateOfDeparture = request.DateOfDeparture;
             req.OperatorId = request.OperatorId;
+            req.MasterId = request.MasterId;
+            req.ServiceId = request.ServiceId;
             db.SubmitChanges();
+        }
+
+        public IEnumerable<Requests> GetRequestsByDateTimeFrame(DateTime begin, DateTime end)
+        {
+            return db.Requests.Where(x => ((x.RequestDate >= begin) && (x.RequestDate <= end)));
         }
     }
 }

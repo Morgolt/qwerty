@@ -28,17 +28,23 @@ namespace TestRostelecom.DAO
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
-    #region Определения метода расширяемости
+    #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertRequest(Request instance);
-    partial void UpdateRequest(Request instance);
-    partial void DeleteRequest(Request instance);
-    partial void InsertOperator(Operator instance);
-    partial void UpdateOperator(Operator instance);
-    partial void DeleteOperator(Operator instance);
-    partial void InsertClient(Client instance);
-    partial void UpdateClient(Client instance);
-    partial void DeleteClient(Client instance);
+    partial void InsertRequests(Requests instance);
+    partial void UpdateRequests(Requests instance);
+    partial void DeleteRequests(Requests instance);
+    partial void InsertServices(Services instance);
+    partial void UpdateServices(Services instance);
+    partial void DeleteServices(Services instance);
+    partial void InsertOperators(Operators instance);
+    partial void UpdateOperators(Operators instance);
+    partial void DeleteOperators(Operators instance);
+    partial void InsertMasters(Masters instance);
+    partial void UpdateMasters(Masters instance);
+    partial void DeleteMasters(Masters instance);
+    partial void InsertClients(Clients instance);
+    partial void UpdateClients(Clients instance);
+    partial void DeleteClients(Clients instance);
     #endregion
 		
 		public RequestDatabaseDataContext() : 
@@ -71,33 +77,49 @@ namespace TestRostelecom.DAO
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Request> Request
+		public System.Data.Linq.Table<Requests> Requests
 		{
 			get
 			{
-				return this.GetTable<Request>();
+				return this.GetTable<Requests>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Operator> Operator
+		public System.Data.Linq.Table<Services> Services
 		{
 			get
 			{
-				return this.GetTable<Operator>();
+				return this.GetTable<Services>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Client> Client
+		public System.Data.Linq.Table<Operators> Operators
 		{
 			get
 			{
-				return this.GetTable<Client>();
+				return this.GetTable<Operators>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Masters> Masters
+		{
+			get
+			{
+				return this.GetTable<Masters>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Clients> Clients
+		{
+			get
+			{
+				return this.GetTable<Clients>();
 			}
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RequestTable")]
-	public partial class Request : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Requests : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -118,11 +140,19 @@ namespace TestRostelecom.DAO
 		
 		private int _OperatorId;
 		
-		private EntityRef<Operator> _OperatorTable;
+		private int _MasterId;
 		
-		private EntityRef<Client> _ClientTable;
+		private int _ServiceId;
 		
-    #region Определения метода расширяемости
+		private EntityRef<Services> _Services;
+		
+		private EntityRef<Operators> _Operators;
+		
+		private EntityRef<Masters> _Masters;
+		
+		private EntityRef<Clients> _Clients;
+		
+    #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
@@ -142,12 +172,18 @@ namespace TestRostelecom.DAO
     partial void OnClientIdChanged();
     partial void OnOperatorIdChanging(int value);
     partial void OnOperatorIdChanged();
+    partial void OnMasterIdChanging(int value);
+    partial void OnMasterIdChanged();
+    partial void OnServiceIdChanging(int value);
+    partial void OnServiceIdChanged();
     #endregion
 		
-		public Request()
+		public Requests()
 		{
-			this._OperatorTable = default(EntityRef<Operator>);
-			this._ClientTable = default(EntityRef<Client>);
+			this._Services = default(EntityRef<Services>);
+			this._Operators = default(EntityRef<Operators>);
+			this._Masters = default(EntityRef<Masters>);
+			this._Clients = default(EntityRef<Clients>);
 			OnCreated();
 		}
 		
@@ -282,7 +318,7 @@ namespace TestRostelecom.DAO
 			{
 				if ((this._ClientId != value))
 				{
-					if (this._ClientTable.HasLoadedOrAssignedValue)
+					if (this._Clients.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -306,7 +342,7 @@ namespace TestRostelecom.DAO
 			{
 				if ((this._OperatorId != value))
 				{
-					if (this._OperatorTable.HasLoadedOrAssignedValue)
+					if (this._Operators.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -319,70 +355,186 @@ namespace TestRostelecom.DAO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OperatorTable_RequestTable", Storage="_OperatorTable", ThisKey="OperatorId", OtherKey="Id", IsForeignKey=true)]
-		public Operator Operator
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MasterId", DbType="Int NOT NULL")]
+		public int MasterId
 		{
 			get
 			{
-				return this._OperatorTable.Entity;
+				return this._MasterId;
 			}
 			set
 			{
-				Operator previousValue = this._OperatorTable.Entity;
+				if ((this._MasterId != value))
+				{
+					if (this._Masters.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMasterIdChanging(value);
+					this.SendPropertyChanging();
+					this._MasterId = value;
+					this.SendPropertyChanged("MasterId");
+					this.OnMasterIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceId", DbType="Int NOT NULL")]
+		public int ServiceId
+		{
+			get
+			{
+				return this._ServiceId;
+			}
+			set
+			{
+				if ((this._ServiceId != value))
+				{
+					if (this._Services.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnServiceIdChanging(value);
+					this.SendPropertyChanging();
+					this._ServiceId = value;
+					this.SendPropertyChanged("ServiceId");
+					this.OnServiceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ServiceTable_RequestTable", Storage="_Services", ThisKey="ServiceId", OtherKey="Id", IsForeignKey=true)]
+		public Services Services
+		{
+			get
+			{
+				return this._Services.Entity;
+			}
+			set
+			{
+				Services previousValue = this._Services.Entity;
 				if (((previousValue != value) 
-							|| (this._OperatorTable.HasLoadedOrAssignedValue == false)))
+							|| (this._Services.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._OperatorTable.Entity = null;
-						previousValue.Request.Remove(this);
+						this._Services.Entity = null;
+						previousValue.Requests.Remove(this);
 					}
-					this._OperatorTable.Entity = value;
+					this._Services.Entity = value;
 					if ((value != null))
 					{
-						value.Request.Add(this);
+						value.Requests.Add(this);
+						this._ServiceId = value.Id;
+					}
+					else
+					{
+						this._ServiceId = default(int);
+					}
+					this.SendPropertyChanged("Services");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OperatorTable_RequestTable", Storage="_Operators", ThisKey="OperatorId", OtherKey="Id", IsForeignKey=true)]
+		public Operators Operators
+		{
+			get
+			{
+				return this._Operators.Entity;
+			}
+			set
+			{
+				Operators previousValue = this._Operators.Entity;
+				if (((previousValue != value) 
+							|| (this._Operators.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Operators.Entity = null;
+						previousValue.Requests.Remove(this);
+					}
+					this._Operators.Entity = value;
+					if ((value != null))
+					{
+						value.Requests.Add(this);
 						this._OperatorId = value.Id;
 					}
 					else
 					{
 						this._OperatorId = default(int);
 					}
-					this.SendPropertyChanged("Operator");
+					this.SendPropertyChanged("Operators");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClientTable_RequestTable", Storage="_ClientTable", ThisKey="ClientId", OtherKey="Id", IsForeignKey=true)]
-		public Client Client
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MasterTable_RequestTable", Storage="_Masters", ThisKey="MasterId", OtherKey="Id", IsForeignKey=true)]
+		public Masters Masters
 		{
 			get
 			{
-				return this._ClientTable.Entity;
+				return this._Masters.Entity;
 			}
 			set
 			{
-				Client previousValue = this._ClientTable.Entity;
+				Masters previousValue = this._Masters.Entity;
 				if (((previousValue != value) 
-							|| (this._ClientTable.HasLoadedOrAssignedValue == false)))
+							|| (this._Masters.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._ClientTable.Entity = null;
-						previousValue.Request.Remove(this);
+						this._Masters.Entity = null;
+						previousValue.Requests.Remove(this);
 					}
-					this._ClientTable.Entity = value;
+					this._Masters.Entity = value;
 					if ((value != null))
 					{
-						value.Request.Add(this);
+						value.Requests.Add(this);
+						this._MasterId = value.Id;
+					}
+					else
+					{
+						this._MasterId = default(int);
+					}
+					this.SendPropertyChanged("Masters");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClientTable_RequestTable", Storage="_Clients", ThisKey="ClientId", OtherKey="Id", IsForeignKey=true)]
+		public Clients Clients
+		{
+			get
+			{
+				return this._Clients.Entity;
+			}
+			set
+			{
+				Clients previousValue = this._Clients.Entity;
+				if (((previousValue != value) 
+							|| (this._Clients.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Clients.Entity = null;
+						previousValue.Requests.Remove(this);
+					}
+					this._Clients.Entity = value;
+					if ((value != null))
+					{
+						value.Requests.Add(this);
 						this._ClientId = value.Id;
 					}
 					else
 					{
 						this._ClientId = default(int);
 					}
-					this.SendPropertyChanged("Client");
+					this.SendPropertyChanged("Clients");
 				}
 			}
 		}
@@ -408,8 +560,122 @@ namespace TestRostelecom.DAO
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ServiceTable")]
+	public partial class Services : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private EntitySet<Requests> _Requests;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public Services()
+		{
+			this._Requests = new EntitySet<Requests>(new Action<Requests>(this.attach_Requests), new Action<Requests>(this.detach_Requests));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ServiceTable_RequestTable", Storage="_Requests", ThisKey="Id", OtherKey="ServiceId")]
+		public EntitySet<Requests> Requests
+		{
+			get
+			{
+				return this._Requests;
+			}
+			set
+			{
+				this._Requests.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Requests(Requests entity)
+		{
+			this.SendPropertyChanging();
+			entity.Services = this;
+		}
+		
+		private void detach_Requests(Requests entity)
+		{
+			this.SendPropertyChanging();
+			entity.Services = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OperatorTable")]
-	public partial class Operator : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Operators : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -418,9 +684,9 @@ namespace TestRostelecom.DAO
 		
 		private string _FullName;
 		
-		private EntitySet<Request> _RequestTable;
+		private EntitySet<Requests> _Requests;
 		
-    #region Определения метода расширяемости
+    #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
@@ -430,9 +696,9 @@ namespace TestRostelecom.DAO
     partial void OnFullNameChanged();
     #endregion
 		
-		public Operator()
+		public Operators()
 		{
-			this._RequestTable = new EntitySet<Request>(new Action<Request>(this.attach_RequestTable), new Action<Request>(this.detach_RequestTable));
+			this._Requests = new EntitySet<Requests>(new Action<Requests>(this.attach_Requests), new Action<Requests>(this.detach_Requests));
 			OnCreated();
 		}
 		
@@ -476,16 +742,16 @@ namespace TestRostelecom.DAO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OperatorTable_RequestTable", Storage="_RequestTable", ThisKey="Id", OtherKey="OperatorId")]
-		public EntitySet<Request> Request
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OperatorTable_RequestTable", Storage="_Requests", ThisKey="Id", OtherKey="OperatorId")]
+		public EntitySet<Requests> Requests
 		{
 			get
 			{
-				return this._RequestTable;
+				return this._Requests;
 			}
 			set
 			{
-				this._RequestTable.Assign(value);
+				this._Requests.Assign(value);
 			}
 		}
 		
@@ -509,21 +775,21 @@ namespace TestRostelecom.DAO
 			}
 		}
 		
-		private void attach_RequestTable(Request entity)
+		private void attach_Requests(Requests entity)
 		{
 			this.SendPropertyChanging();
-			entity.Operator = this;
+			entity.Operators = this;
 		}
 		
-		private void detach_RequestTable(Request entity)
+		private void detach_Requests(Requests entity)
 		{
 			this.SendPropertyChanging();
-			entity.Operator = null;
+			entity.Operators = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ClientTable")]
-	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MasterTable")]
+	public partial class Masters : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -532,9 +798,9 @@ namespace TestRostelecom.DAO
 		
 		private string _FullName;
 		
-		private EntitySet<Request> _RequestTable;
+		private EntitySet<Requests> _Requests;
 		
-    #region Определения метода расширяемости
+    #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
@@ -544,9 +810,123 @@ namespace TestRostelecom.DAO
     partial void OnFullNameChanged();
     #endregion
 		
-		public Client()
+		public Masters()
 		{
-			this._RequestTable = new EntitySet<Request>(new Action<Request>(this.attach_RequestTable), new Action<Request>(this.detach_RequestTable));
+			this._Requests = new EntitySet<Requests>(new Action<Requests>(this.attach_Requests), new Action<Requests>(this.detach_Requests));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this.OnFullNameChanging(value);
+					this.SendPropertyChanging();
+					this._FullName = value;
+					this.SendPropertyChanged("FullName");
+					this.OnFullNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MasterTable_RequestTable", Storage="_Requests", ThisKey="Id", OtherKey="MasterId")]
+		public EntitySet<Requests> Requests
+		{
+			get
+			{
+				return this._Requests;
+			}
+			set
+			{
+				this._Requests.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Requests(Requests entity)
+		{
+			this.SendPropertyChanging();
+			entity.Masters = this;
+		}
+		
+		private void detach_Requests(Requests entity)
+		{
+			this.SendPropertyChanging();
+			entity.Masters = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ClientTable")]
+	public partial class Clients : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _FullName;
+		
+		private EntitySet<Requests> _Requests;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnFullNameChanging(string value);
+    partial void OnFullNameChanged();
+    #endregion
+		
+		public Clients()
+		{
+			this._Requests = new EntitySet<Requests>(new Action<Requests>(this.attach_Requests), new Action<Requests>(this.detach_Requests));
 			OnCreated();
 		}
 		
@@ -590,16 +970,16 @@ namespace TestRostelecom.DAO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClientTable_RequestTable", Storage="_RequestTable", ThisKey="Id", OtherKey="ClientId")]
-		public EntitySet<Request> Request
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClientTable_RequestTable", Storage="_Requests", ThisKey="Id", OtherKey="ClientId")]
+		public EntitySet<Requests> Requests
 		{
 			get
 			{
-				return this._RequestTable;
+				return this._Requests;
 			}
 			set
 			{
-				this._RequestTable.Assign(value);
+				this._Requests.Assign(value);
 			}
 		}
 		
@@ -623,16 +1003,16 @@ namespace TestRostelecom.DAO
 			}
 		}
 		
-		private void attach_RequestTable(Request entity)
+		private void attach_Requests(Requests entity)
 		{
 			this.SendPropertyChanging();
-			entity.Client = this;
+			entity.Clients = this;
 		}
 		
-		private void detach_RequestTable(Request entity)
+		private void detach_Requests(Requests entity)
 		{
 			this.SendPropertyChanging();
-			entity.Client = null;
+			entity.Clients = null;
 		}
 	}
 }
