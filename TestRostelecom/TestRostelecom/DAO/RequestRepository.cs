@@ -8,6 +8,35 @@ namespace TestRostelecom.DAO
 {
     class RequestRepository
     {
-        const string SQL_GET_REQUEST_BY_ID = 
+        private RequestDatabaseDataContext db = new RequestDatabaseDataContext();
+
+        public Request GetRequestById(int id)
+        {
+            return db.Request.Single(x => x.Id == id);
+        }
+
+        public void CreateRequest(Request request)
+        {
+            db.Request.InsertOnSubmit(request);
+            db.SubmitChanges();
+        }
+
+        public void DeleteRequest(Request request)
+        {
+            db.Request.DeleteOnSubmit(request);
+            db.SubmitChanges();
+        }
+
+        public void UpdateRequest(Request request)
+        {
+            Request req = db.Request.Single(x => x.Id == request.Id);
+            req.Address = request.Address;
+            req.ClientId = request.ClientId;
+            req.CloseDate = request.CloseDate;
+            req.Comment = request.Comment;
+            req.DateOfDeparture = request.DateOfDeparture;
+            req.OperatorId = request.OperatorId;
+            db.SubmitChanges();
+        }
     }
 }
