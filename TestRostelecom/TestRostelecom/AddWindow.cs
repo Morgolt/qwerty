@@ -18,12 +18,16 @@ namespace TestRostelecom
         private SecondaryRepository secondRep;
         private RequestDatabaseDataContext requestDBContext;
         private RequestRepository requestRepo;
+        private bool isEditMode;
+        private Requests requestToEdit;
 
-        private void InitializeMembers()
+        private void InitializeMembers(RequestDatabaseDataContext _requestDbContext, RequestRepository _requestRepo, SecondaryRepository _secondaryRepo)
         {
-            secondRep = new SecondaryRepository();
-            requestDBContext = new RequestDatabaseDataContext();
-            requestRepo = new RequestRepository(requestDBContext);
+            isEditMode = false;
+            requestToEdit = null;
+            requestDBContext = _requestDbContext;
+            requestRepo = _requestRepo;
+            secondRep = _secondaryRepo;
         }
 
         private void InitializeComboBoxes()
@@ -44,17 +48,17 @@ namespace TestRostelecom
             comboBoxMasters.ValueMember = "Id";
         }
 
-        public AddWindow()
+        public AddWindow(RequestDatabaseDataContext _requestDbContext, RequestRepository _requestRepo, SecondaryRepository _secondaryRepo)
         {
             InitializeComponent();
-            InitializeMembers();
+            InitializeMembers(_requestDbContext, _requestRepo, _secondaryRepo);
             InitializeComboBoxes();
         }
 
-        public AddWindow(Requests request)
+        public AddWindow(Requests request, RequestDatabaseDataContext _requestDbContext, RequestRepository _requestRepo, SecondaryRepository _secondaryRepo)
         {
             InitializeComponent();
-            InitializeMembers();
+            InitializeMembers(_requestDbContext, _requestRepo, _secondaryRepo);
             InitializeComboBoxes();
             
             // Fill TextBoxes
@@ -75,6 +79,9 @@ namespace TestRostelecom
             //dateTimePicker2.Value = request.CloseDate.GetValueOrDefault(null);
             //dateTimePicker3.Value = request.DateOfDeparture.Value;
 
+            buttonAdd.Text = "Изменить";
+            isEditMode = true;
+            requestToEdit = request;
         }
 
         private void buttonAdd_Click_1(object sender, EventArgs e)
@@ -90,22 +97,45 @@ namespace TestRostelecom
             {
                 Clients client = new Clients();
                 client.FullName = textBoxClient.Text;
-                Requests request = new Requests();
+
                 if (secondRep.GetClientByFullName(textBoxClient.Text) == null)
                 {
                     secondRep.CreateClient(client);
                 }
 
-                request.ClientId = secondRep.GetClientByFullName(textBoxClient.Text).Id;
-                request.MasterId = ((Masters)comboBoxMasters.SelectedItem).Id;
-                request.OperatorId = ((Operators)comboBoxOperators.SelectedItem).Id;
-                request.ServiceId = ((Services)comboBoxServies.SelectedItem).Id;
-                request.Comment = textBoxComment.Text;
-                request.Address = textBoxAdress.Text;
-                request.RequestDate = dateTimePicker1.Value;
-                request.CloseDate = dateTimePicker2.Value;
-                request.DateOfDeparture = dateTimePicker3.Value;
-                requestRepo.CreateRequest(request);
+                if (isEditMode)
+                {
+                    requestToEdit.Clients = requestDBContext.Clients.Single(x => x.Id == secondRep.GetClientByFullName(textBoxClient.Text).Id);
+                    requestToEdit.Masters = requestDBContext.Masters.Single(x => x.Id == ((Masters)comboBoxMasters.SelectedItem).Id);
+                    requestToEdit.Operators = requestDBContext.Operators.Single(x => x.Id == ((Operators)comboBoxOperators.SelectedItem).Id);
+                    requestToEdit.Services = requestDBContext.Services.Single(x => x.Id == ((Services)comboBoxServies.SelectedItem).Id);
+
+                    requestToEdit.Comment = textBoxComment.Text;
+                    requestToEdit.Address = textBoxAdress.Text;
+                    requestToEdit.RequestDate = dateTimePicker1.Value;
+                    requestToEdit.CloseDate = dateTimePicker2.Value;
+                    requestToEdit.DateOfDeparture = dateTimePicker3.Value;
+
+                    requestDBContext.SubmitChanges();
+                    //requestRepo.UpdateRequest(requestToEdit);
+                }
+                else
+                {
+                    Requests request = new Requests();
+
+                    request.ClientId = secondRep.GetClientByFullName(textBoxClient.Text).Id;
+                    request.MasterId = ((Masters)comboBoxMasters.SelectedItem).Id;
+                    request.OperatorId = ((Operators)comboBoxOperators.SelectedItem).Id;
+                    request.ServiceId = ((Services)comboBoxServies.SelectedItem).Id;
+                    request.Comment = textBoxComment.Text;
+                    request.Address = textBoxAdress.Text;
+                    request.RequestDate = dateTimePicker1.Value;
+                    request.CloseDate = dateTimePicker2.Value;
+                    request.DateOfDeparture = dateTimePicker3.Value;
+
+                    requestRepo.CreateRequest(request);
+                }
+                
             }
         }
     }

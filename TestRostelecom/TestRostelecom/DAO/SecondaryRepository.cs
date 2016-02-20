@@ -11,7 +11,12 @@ namespace TestRostelecom.DAO
 
     public class SecondaryRepository
     {
-        private RequestDatabaseDataContext db = new RequestDatabaseDataContext();
+        private RequestDatabaseDataContext db;
+
+        public SecondaryRepository(RequestDatabaseDataContext context)
+        {
+            this.db = context;
+        }
 
         public List<Masters> GetMastersList()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestRostelecom.DAO
 {
-    class RequestRepository
+    public class RequestRepository
     {
         private RequestDatabaseDataContext db;
 
@@ -32,6 +32,8 @@ namespace TestRostelecom.DAO
             db.SubmitChanges();
         }
 
+
+        // TODO: FIX OR DELETE IT
         public void UpdateRequest(Requests request)
         {
             Requests req = db.Requests.Single(x => x.Id == request.Id);
