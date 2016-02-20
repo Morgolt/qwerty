@@ -13,9 +13,20 @@ namespace TestRostelecom
 {
     public partial class MainForm : Form
     {
+        private RequestDatabaseDataContext requestDBContext = new RequestDatabaseDataContext();
+        private RequestRepository requestRepo = new RequestRepository();
+
         public MainForm()
         {
-            InitializeComponent();            
+            InitializeComponent();   
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //requestsBindingSource.DataSource = requestDBContext.Requests;
+            requestsBindingSource.DataSource = requestRepo.GetAllRequest();
+
+            var y = requestDBContext.Masters.Single(x => x.Id == 2).FullName;
         }
     }
 }

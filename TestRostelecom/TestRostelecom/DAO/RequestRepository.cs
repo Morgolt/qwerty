@@ -45,5 +45,10 @@ namespace TestRostelecom.DAO
         {
             return db.Requests.Where(x => ((x.RequestDate >= begin) && (x.RequestDate <= end)));
         }
+
+        public IEnumerable<Requests> GetAllRequest()
+        {
+            return db.Requests;
+        }
     }
 }
