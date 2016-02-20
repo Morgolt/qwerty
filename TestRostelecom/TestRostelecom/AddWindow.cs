@@ -16,9 +16,15 @@ namespace TestRostelecom
     {
 
         private SecondaryRepository secondRep = new SecondaryRepository();
+        private RequestDatabaseDataContext requestDBContext;
+        private RequestRepository requestRepo;
+
         public AddWindow()
         {
             InitializeComponent();
+            requestDBContext = new RequestDatabaseDataContext();
+            requestRepo = new RequestRepository(requestDBContext);
+
             IList listServies = secondRep.GetServicesList();
             comboBoxServies.DataSource = listServies;
             comboBoxServies.DisplayMember = "Name";
@@ -33,6 +39,34 @@ namespace TestRostelecom
             comboBoxMasters.DataSource = listMasters;
             comboBoxMasters.DisplayMember = "FullName";
             comboBoxMasters.ValueMember = "Id";
+        }
+
+        private void buttonAdd_Click_1(object sender, EventArgs e)
+        {
+            //IList<Masters> masters = secondRep.GetMastersList();
+
+            if ((textBoxClient.Text == null) || (textBoxAdress.Text == null))
+            {
+                MessageBox.Show("Блять напиши что нибудь в пустые текст боксы");
+            }
+            else
+            {
+                Clients client = new Clients();
+                client.FullName = textBoxClient.Text;
+                Requests request = new Requests();
+                if (secondRep.GetClientByFullName(textBoxClient.Text) == null)
+                {
+                    secondRep.CreateClient(client);
+                }
+
+                request.ClientId = secondRep.GetClientByFullName(textBoxClient.Text).Id;
+                request.MasterId = ((Masters)comboBoxMasters.SelectedItem).Id;
+                request.OperatorId = ((Operators)comboBoxOperators.SelectedItem).Id;
+                request.ServiceId = ((Services)comboBoxServies.SelectedItem).Id;
+                request.Comment = textBoxComment.Text;
+                request.Address = textBoxAdress.Text;
+                requestRepo.CreateRequest(request);
+            }
         }
     }
 }

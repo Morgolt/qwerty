@@ -58,5 +58,10 @@ namespace TestRostelecom.DAO
             db.Clients.InsertOnSubmit(client);
             db.SubmitChanges();
         }
+
+        public Clients GetClientByFullName(string fullName)
+        {
+            return db.Clients.SingleOrDefault(x => x.FullName == fullName);
+        }
     }
 }
