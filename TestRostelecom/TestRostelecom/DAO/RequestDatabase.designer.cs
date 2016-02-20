@@ -587,8 +587,13 @@ namespace TestRostelecom.DAO
 			this._Requests = new EntitySet<Requests>(new Action<Requests>(this.attach_Requests), new Action<Requests>(this.detach_Requests));
 			OnCreated();
 		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -701,8 +706,13 @@ namespace TestRostelecom.DAO
 			this._Requests = new EntitySet<Requests>(new Action<Requests>(this.attach_Requests), new Action<Requests>(this.detach_Requests));
 			OnCreated();
 		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+
+        public override string ToString()
+        {
+            return this.FullName;
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -815,8 +825,13 @@ namespace TestRostelecom.DAO
 			this._Requests = new EntitySet<Requests>(new Action<Requests>(this.attach_Requests), new Action<Requests>(this.detach_Requests));
 			OnCreated();
 		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+
+        public override string ToString()
+        {
+            return this.FullName;
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Id
 		{
 			get
@@ -929,8 +944,13 @@ namespace TestRostelecom.DAO
 			this._Requests = new EntitySet<Requests>(new Action<Requests>(this.attach_Requests), new Action<Requests>(this.detach_Requests));
 			OnCreated();
 		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+
+        public override string ToString()
+        {
+            return this.FullName;
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
