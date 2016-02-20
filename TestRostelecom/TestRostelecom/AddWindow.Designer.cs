@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxClient = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxAdress = new System.Windows.Forms.TextBox();
             this.comboBoxServies = new System.Windows.Forms.ComboBox();
             this.requestsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBoxOperators = new System.Windows.Forms.ComboBox();
             this.comboBoxMasters = new System.Windows.Forms.ComboBox();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxComment = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,15 +48,16 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.buttonAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.requestsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBoxClient
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(478, 20);
-            this.textBox1.TabIndex = 0;
+            this.textBoxClient.Location = new System.Drawing.Point(12, 26);
+            this.textBoxClient.Name = "textBoxClient";
+            this.textBoxClient.Size = new System.Drawing.Size(478, 20);
+            this.textBoxClient.TabIndex = 0;
             // 
             // dateTimePicker1
             // 
@@ -72,12 +73,12 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(143, 20);
             this.dateTimePicker2.TabIndex = 3;
             // 
-            // textBox2
+            // textBoxAdress
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 124);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(478, 20);
-            this.textBox2.TabIndex = 4;
+            this.textBoxAdress.Location = new System.Drawing.Point(12, 124);
+            this.textBoxAdress.Name = "textBoxAdress";
+            this.textBoxAdress.Size = new System.Drawing.Size(478, 20);
+            this.textBoxAdress.TabIndex = 4;
             // 
             // comboBoxServies
             // 
@@ -117,13 +118,13 @@
             this.dateTimePicker3.Size = new System.Drawing.Size(143, 20);
             this.dateTimePicker3.TabIndex = 8;
             // 
-            // textBox3
+            // textBoxComment
             // 
-            this.textBox3.Location = new System.Drawing.Point(536, 26);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(241, 253);
-            this.textBox3.TabIndex = 9;
+            this.textBoxComment.Location = new System.Drawing.Point(536, 26);
+            this.textBoxComment.Multiline = true;
+            this.textBoxComment.Name = "textBoxComment";
+            this.textBoxComment.Size = new System.Drawing.Size(241, 253);
+            this.textBoxComment.TabIndex = 9;
             // 
             // label1
             // 
@@ -206,11 +207,22 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "Мастер";
             // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Location = new System.Drawing.Point(193, 312);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(142, 37);
+            this.buttonAdd.TabIndex = 19;
+            this.buttonAdd.Text = "Добавить";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click_1);
+            // 
             // AddWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 298);
+            this.ClientSize = new System.Drawing.Size(790, 381);
+            this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -220,15 +232,15 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBoxComment);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.comboBoxMasters);
             this.Controls.Add(this.comboBoxOperators);
             this.Controls.Add(this.comboBoxServies);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBoxAdress);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxClient);
             this.Name = "AddWindow";
             this.Text = "Добавить заявку";
             ((System.ComponentModel.ISupportInitialize)(this.requestsBindingSource)).EndInit();
@@ -239,16 +251,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxClient;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxAdress;
         private System.Windows.Forms.ComboBox comboBoxServies;
         private System.Windows.Forms.BindingSource requestsBindingSource;
         private System.Windows.Forms.ComboBox comboBoxOperators;
         private System.Windows.Forms.ComboBox comboBoxMasters;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxComment;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
@@ -258,5 +270,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button buttonAdd;
     }
 }
