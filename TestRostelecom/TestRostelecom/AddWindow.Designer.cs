@@ -230,7 +230,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox1);
             this.Name = "AddWindow";
-            this.Text = "AddWindow";
+            this.Text = "Добавить заявку";
             ((System.ComponentModel.ISupportInitialize)(this.requestsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

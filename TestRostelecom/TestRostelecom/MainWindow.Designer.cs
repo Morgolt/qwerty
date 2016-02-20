@@ -39,14 +39,15 @@
             this.chooseDateFrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testButtonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Masters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requestDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.closeDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.servicesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.operatorsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Masters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfDepartureDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requestsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -57,6 +58,10 @@
             // 
             // menuStrip
             // 
+            this.menuStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
@@ -64,7 +69,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip.Size = new System.Drawing.Size(1008, 24);
+            this.menuStrip.Size = new System.Drawing.Size(180, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -75,25 +80,25 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.fileToolStripMenuItem.Text = "Файл";
             // 
             // exportToExcelToolStripMenuItem
             // 
             this.exportToExcelToolStripMenuItem.Name = "exportToExcelToolStripMenuItem";
-            this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.exportToExcelToolStripMenuItem.Text = "Export to Excel";
+            this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exportToExcelToolStripMenuItem.Text = "Экспорт в Excel";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(154, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exitToolStripMenuItem.Text = "Выход";
             // 
             // editToolStripMenuItem
             // 
@@ -101,40 +106,52 @@
             this.addRequestToolStripMenuItem,
             this.chooseDateFrameToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.editToolStripMenuItem.Text = "Правка";
             // 
             // addRequestToolStripMenuItem
             // 
             this.addRequestToolStripMenuItem.Name = "addRequestToolStripMenuItem";
-            this.addRequestToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.addRequestToolStripMenuItem.Text = "Add Request";
+            this.addRequestToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.addRequestToolStripMenuItem.Text = "Добавить заявку";
             this.addRequestToolStripMenuItem.Click += new System.EventHandler(this.addRequestToolStripMenuItem_Click);
             // 
             // chooseDateFrameToolStripMenuItem
             // 
             this.chooseDateFrameToolStripMenuItem.Name = "chooseDateFrameToolStripMenuItem";
-            this.chooseDateFrameToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.chooseDateFrameToolStripMenuItem.Text = "Choose Date Frame";
+            this.chooseDateFrameToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.chooseDateFrameToolStripMenuItem.Text = "Выбрать календарный период";
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.testButtonToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.helpToolStripMenuItem.Text = "Справка";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.aboutToolStripMenuItem.Text = "О приложении";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // testButtonToolStripMenuItem
+            // 
+            this.testButtonToolStripMenuItem.Name = "testButtonToolStripMenuItem";
+            this.testButtonToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.testButtonToolStripMenuItem.Text = "Test Button";
+            this.testButtonToolStripMenuItem.Click += new System.EventHandler(this.testButtonToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -151,69 +168,80 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 27);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(984, 526);
+            this.dataGridView1.Size = new System.Drawing.Size(984, 517);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // Masters
-            // 
-            this.Masters.DataPropertyName = "Masters";
-            this.Masters.HeaderText = "Masters";
-            this.Masters.Name = "Masters";
-            this.Masters.ReadOnly = true;
             // 
             // clientsDataGridViewTextBoxColumn
             // 
+            this.clientsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clientsDataGridViewTextBoxColumn.DataPropertyName = "Clients";
-            this.clientsDataGridViewTextBoxColumn.HeaderText = "Clients";
+            this.clientsDataGridViewTextBoxColumn.HeaderText = "ФИО Клиента";
             this.clientsDataGridViewTextBoxColumn.Name = "clientsDataGridViewTextBoxColumn";
             this.clientsDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // requestDateDataGridViewTextBoxColumn
             // 
+            this.requestDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.requestDateDataGridViewTextBoxColumn.DataPropertyName = "RequestDate";
-            this.requestDateDataGridViewTextBoxColumn.HeaderText = "RequestDate";
+            this.requestDateDataGridViewTextBoxColumn.HeaderText = "Дата заявки";
             this.requestDateDataGridViewTextBoxColumn.Name = "requestDateDataGridViewTextBoxColumn";
             this.requestDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // closeDateDataGridViewTextBoxColumn
             // 
+            this.closeDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.closeDateDataGridViewTextBoxColumn.DataPropertyName = "CloseDate";
-            this.closeDateDataGridViewTextBoxColumn.HeaderText = "CloseDate";
+            this.closeDateDataGridViewTextBoxColumn.HeaderText = "Дата закрытия заявки";
             this.closeDateDataGridViewTextBoxColumn.Name = "closeDateDataGridViewTextBoxColumn";
             this.closeDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // addressDataGridViewTextBoxColumn
             // 
+            this.addressDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Адрес";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
             this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // servicesDataGridViewTextBoxColumn
             // 
+            this.servicesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.servicesDataGridViewTextBoxColumn.DataPropertyName = "Services";
-            this.servicesDataGridViewTextBoxColumn.HeaderText = "Services";
+            this.servicesDataGridViewTextBoxColumn.HeaderText = "Подключаемая услуга";
             this.servicesDataGridViewTextBoxColumn.Name = "servicesDataGridViewTextBoxColumn";
             this.servicesDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // operatorsDataGridViewTextBoxColumn
             // 
+            this.operatorsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.operatorsDataGridViewTextBoxColumn.DataPropertyName = "Operators";
-            this.operatorsDataGridViewTextBoxColumn.HeaderText = "Operators";
+            this.operatorsDataGridViewTextBoxColumn.HeaderText = "ФИО Оператора";
             this.operatorsDataGridViewTextBoxColumn.Name = "operatorsDataGridViewTextBoxColumn";
             this.operatorsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.operatorsDataGridViewTextBoxColumn.ToolTipText = "Оператор, принявший заявку";
+            // 
+            // Masters
+            // 
+            this.Masters.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Masters.DataPropertyName = "Masters";
+            this.Masters.HeaderText = "ФИО Мастера";
+            this.Masters.Name = "Masters";
+            this.Masters.ReadOnly = true;
             // 
             // dateOfDepartureDataGridViewTextBoxColumn
             // 
+            this.dateOfDepartureDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dateOfDepartureDataGridViewTextBoxColumn.DataPropertyName = "DateOfDeparture";
-            this.dateOfDepartureDataGridViewTextBoxColumn.HeaderText = "DateOfDeparture";
+            this.dateOfDepartureDataGridViewTextBoxColumn.HeaderText = "Дата выезда";
             this.dateOfDepartureDataGridViewTextBoxColumn.Name = "dateOfDepartureDataGridViewTextBoxColumn";
             this.dateOfDepartureDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateOfDepartureDataGridViewTextBoxColumn.ToolTipText = "Планируемая дата выезда мастера";
             // 
             // commentDataGridViewTextBoxColumn
             // 
+            this.commentDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
-            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
+            this.commentDataGridViewTextBoxColumn.HeaderText = "Комментарий";
             this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
             this.commentDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -265,6 +293,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn closeDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn requestDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem testButtonToolStripMenuItem;
     }
 }
 
