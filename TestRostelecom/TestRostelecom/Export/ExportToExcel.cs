@@ -9,52 +9,69 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Data;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace TestRostelecom.Export
 {
     public class ExportToExcel
     {
-        public void ExportToXLS<T>(IEnumerable<T> list, string path)
+        public void ExportToXLS<T>(DataGridView dgv, string path)
         {
-            SpreadsheetDocument doc = SpreadsheetDocument.Create(path, SpreadsheetDocumentType.Workbook);
-            WorkbookPart workbookpart = doc.AddWorkbookPart();
-            workbookpart.Workbook = new Workbook();
-            WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
-            worksheetPart.Worksheet = new Worksheet(new SheetData());
-            Sheets sheets = doc.WorkbookPart.Workbook.
-                    AppendChild<Sheets>(new Sheets());
-            Sheet sheet = new Sheet()
+            using (SpreadsheetDocument doc = SpreadsheetDocument.Create(path, SpreadsheetDocumentType.Workbook))
             {
-                Id = doc.WorkbookPart.
-                    GetIdOfPart(worksheetPart),
-                SheetId = 1,
-                Name = "mySheet"
-            };            
-            sheets.Append(sheet);
-            workbookpart.Workbook.Save();
-            doc.Close();
-        }
-
-        private DataTable EnumerableToDataTable<T>(IEnumerable<T> list)
-        {
-            DataTable dt = new DataTable();
-
-            foreach(PropertyInfo info in typeof(T).GetProperties())
-            {
-                dt.Columns.Add(new DataColumn(info.Name, info.PropertyType));
-            }
-
-            foreach(T t in list)
-            {
-                DataRow dr = dt.NewRow();
-
-                foreach(PropertyInfo info in typeof(T).GetProperties())
+                WorkbookPart workbookpart = doc.AddWorkbookPart();
+                workbookpart.Workbook = new Workbook();
+                WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet(new SheetData());
+                Sheets sheets = doc.WorkbookPart.Workbook.
+                        AppendChild<Sheets>(new Sheets());
+                Sheet sheet = new Sheet()
                 {
-                    dr[info.Name] = info.GetValue(t, null); 
-                }
-                dt.Rows.Add(dr);
+                    Id = doc.WorkbookPart.
+                        GetIdOfPart(worksheetPart),
+                    SheetId = 1,
+                    Name = "mySheet"
+                };
+                sheets.Append(sheet);
+                CreateWorkSheet(worksheetPart, dgv);
+                workbookpart.Workbook.Save();
             }
-            return dt;
+        }        
+
+        private void CreateWorkSheet(WorksheetPart worksheetPart, DataGridView dgv)
+        {
+            Worksheet worksheet = new Worksheet();
+            SheetData sheetData = new SheetData();
+
+            UInt32Value currRowIndex = 1U;
+            int colIndex = 0;
+            Row excelRow;
+
+            foreach(DataGridViewRow row in dgv.Rows)
+            {
+                excelRow = new Row();
+                excelRow.RowIndex = currRowIndex++;
+
+                foreach(Column col in dgv.Columns)
+                {
+                    Cell cell = new Cell();
+                    CellValue cellValue = new CellValue();
+                    cellValue.Text = row.Cells[colIndex].Value.ToString();
+                    cell.Append(cellValue);
+                    excelRow.Append(cell);
+                }
+                sheetData.Append(excelRow);
+            }
+
+            SheetFormatProperties formattingProps = new SheetFormatProperties()
+            {
+                DefaultRowHeight = 20D,
+                DefaultColumnWidth = 20D
+            };
+
+            worksheet.Append(formattingProps);
+            worksheet.Append(sheetData);
+            worksheetPart.Worksheet = worksheet;
         }
     }
 }
