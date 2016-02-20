@@ -16,6 +16,16 @@ namespace TestRostelecom
     {
 
         private SecondaryRepository secondRep = new SecondaryRepository();
+
+        public AddWindow(Requests request)
+        {
+            InitializeComponent();
+
+            textBox1.Text = request.Clients.FullName;
+            textBox2.Text = request.Address;
+            textBox3.Text = request.Comment;
+        }
+
         public AddWindow()
         {
             InitializeComponent();

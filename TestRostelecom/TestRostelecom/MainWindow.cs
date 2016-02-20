@@ -19,17 +19,30 @@ namespace TestRostelecom
         public MainForm()
         {
             InitializeComponent();
+
             requestDBContext = new RequestDatabaseDataContext();
             requestRepo = new RequestRepository(requestDBContext);
+
+            dataGridView1.CellContentDoubleClick += DataGridView1_CellContentDoubleClick;
+            dataGridView1.RowHeaderMouseDoubleClick += DataGridView1_RowHeaderMouseDoubleClick;
+        }
+
+        private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            AddWindow addWindow = new AddWindow((Requests)dataGridView1.Rows[e.RowIndex].DataBoundItem);
+            addWindow.Text = "Редакирование существующей заявки";
+            addWindow.ShowDialog();
+        }
+
+        private void DataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AddWindow addWindow = new AddWindow((Requests)dataGridView1.Rows[e.RowIndex].DataBoundItem);
+            addWindow.ShowDialog();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            BindingList<Requests> bl = new BindingList<Requests>(requestDBContext.Requests.ToList());
-            bl.AllowNew = true;
-            requestsBindingSource.DataSource = bl;
-            
-            //requestsBindingSource.DataSource = requestRepo.GetAllRequest();
+            requestsBindingSource.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
         }
 
         private void testButtonToolStripMenuItem_Click(object sender, EventArgs e)
