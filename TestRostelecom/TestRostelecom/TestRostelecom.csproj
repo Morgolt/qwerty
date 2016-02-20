@@ -64,6 +64,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddWindow.Designer.cs">
+      <DependentUpon>AddWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\RequestDatabase.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,6 +89,9 @@
     <None Include="DAO\RequestDatabase.dbml.layout">
       <DependentUpon>RequestDatabase.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="AddWindow.resx">
+      <DependentUpon>AddWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

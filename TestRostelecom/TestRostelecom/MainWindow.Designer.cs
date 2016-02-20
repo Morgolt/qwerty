@@ -88,6 +88,7 @@
             this.exportToExcelToolStripMenuItem.Name = "exportToExcelToolStripMenuItem";
             this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.exportToExcelToolStripMenuItem.Text = "Экспорт в Excel";
+            this.exportToExcelToolStripMenuItem.Click += new System.EventHandler(this.exportToExcelToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 

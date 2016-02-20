@@ -15,7 +15,7 @@ namespace TestRostelecom.Export
 {
     public class ExportToExcel
     {
-        public void ExportToXLS<T>(DataGridView dgv, string path)
+        public void ExportToXLS(DataGridView dgv, string path)
         {
             using (SpreadsheetDocument doc = SpreadsheetDocument.Create(path, SpreadsheetDocumentType.Workbook))
             {
@@ -38,7 +38,7 @@ namespace TestRostelecom.Export
             }
         }        
 
-        private void CreateWorkSheet(WorksheetPart worksheetPart, DataGridView dgv)
+        /*private void CreateWorkSheet(WorksheetPart worksheetPart, DataGridView dgv)
         {
             Worksheet worksheet = new Worksheet();
             SheetData sheetData = new SheetData();
@@ -52,13 +52,59 @@ namespace TestRostelecom.Export
                 excelRow = new Row();
                 excelRow.RowIndex = currRowIndex++;
 
-                foreach(Column col in dgv.Columns)
+                foreach(DataGridViewColumn col in dgv.Columns)
+                {
+                    Cell cell = new Cell();
+                    CellValue cellValue = new CellValue();                    
+                    cellValue.Text = row.Cells[colIndex].Value?.ToString();
+                    cell.Append(cellValue);
+                    excelRow.Append(cell);
+                    colIndex++;
+                }
+                sheetData.Append(excelRow);
+            }
+
+            SheetFormatProperties formattingProps = new SheetFormatProperties()
+            {
+                DefaultRowHeight = 20D,
+                DefaultColumnWidth = 20D
+            };
+
+            worksheet.Append(formattingProps);
+            worksheet.Append(sheetData);
+            worksheetPart.Worksheet = worksheet;
+        }*/
+
+        private void CreateWorkSheet(WorksheetPart worksheetPart, DataGridView dgv)
+        {
+            Worksheet worksheet = new Worksheet();
+            SheetData sheetData = new SheetData();
+
+            UInt32Value currRowIndex = 1U;
+            Row excelRow = new Row();
+            foreach(DataGridViewColumn col in dgv.Columns)
+            {
+                Cell cell = new Cell();
+                cell.DataType = CellValues.String;
+                CellValue cellValue = new CellValue();
+                cellValue.Text = col.HeaderText;
+                cell.Append(cellValue);
+                excelRow.Append(cell);
+            }
+            sheetData.Append(excelRow);
+            currRowIndex++;
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                excelRow = new Row();
+                excelRow.RowIndex = currRowIndex++;
+                foreach (DataGridViewCell col in row.Cells)
                 {
                     Cell cell = new Cell();
                     CellValue cellValue = new CellValue();
-                    cellValue.Text = row.Cells[colIndex].Value.ToString();
+                    cell.DataType = CellValues.String;
+                    cellValue.Text = col.Value?.ToString();
                     cell.Append(cellValue);
-                    excelRow.Append(cell);
+                    excelRow.Append(cell);                    
                 }
                 sheetData.Append(excelRow);
             }
