@@ -13,7 +13,7 @@ namespace TestRostelecom
 {
     public partial class MainForm : Form
     {
-        private RequestDatabaseDataContext requestDBContext = new RequestDatabaseDataContext();
+        //private RequestDatabaseDataContext requestDBContext = new RequestDatabaseDataContext();
         private RequestRepository requestRepo = new RequestRepository();
 
         public MainForm()
@@ -25,8 +25,6 @@ namespace TestRostelecom
         {
             //requestsBindingSource.DataSource = requestDBContext.Requests;
             requestsBindingSource.DataSource = requestRepo.GetAllRequest();
-
-            var y = requestDBContext.Masters.Single(x => x.Id == 2).FullName;
         }
     }
 }

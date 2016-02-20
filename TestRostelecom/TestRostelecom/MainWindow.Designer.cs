@@ -166,6 +166,7 @@
             // 
             // clientsDataGridViewTextBoxColumn
             // 
+            this.clientsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.clientsDataGridViewTextBoxColumn.DataPropertyName = "Clients";
             this.clientsDataGridViewTextBoxColumn.HeaderText = "ФИО Клиента";
             this.clientsDataGridViewTextBoxColumn.Name = "clientsDataGridViewTextBoxColumn";
@@ -173,6 +174,7 @@
             // 
             // requestDateDataGridViewTextBoxColumn
             // 
+            this.requestDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.requestDateDataGridViewTextBoxColumn.DataPropertyName = "RequestDate";
             this.requestDateDataGridViewTextBoxColumn.HeaderText = "Дата заявки";
             this.requestDateDataGridViewTextBoxColumn.Name = "requestDateDataGridViewTextBoxColumn";
@@ -180,6 +182,7 @@
             // 
             // closeDateDataGridViewTextBoxColumn
             // 
+            this.closeDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.closeDateDataGridViewTextBoxColumn.DataPropertyName = "CloseDate";
             this.closeDateDataGridViewTextBoxColumn.HeaderText = "Дата закрытия заявки";
             this.closeDateDataGridViewTextBoxColumn.Name = "closeDateDataGridViewTextBoxColumn";
@@ -187,6 +190,7 @@
             // 
             // addressDataGridViewTextBoxColumn
             // 
+            this.addressDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
             this.addressDataGridViewTextBoxColumn.HeaderText = "Адрес";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
@@ -194,6 +198,7 @@
             // 
             // servicesDataGridViewTextBoxColumn
             // 
+            this.servicesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.servicesDataGridViewTextBoxColumn.DataPropertyName = "Services";
             this.servicesDataGridViewTextBoxColumn.HeaderText = "Подключаемая услуга";
             this.servicesDataGridViewTextBoxColumn.Name = "servicesDataGridViewTextBoxColumn";
@@ -201,6 +206,7 @@
             // 
             // operatorsDataGridViewTextBoxColumn
             // 
+            this.operatorsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.operatorsDataGridViewTextBoxColumn.DataPropertyName = "Operators";
             this.operatorsDataGridViewTextBoxColumn.HeaderText = "ФИО Оператора";
             this.operatorsDataGridViewTextBoxColumn.Name = "operatorsDataGridViewTextBoxColumn";
@@ -209,6 +215,7 @@
             // 
             // Masters
             // 
+            this.Masters.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Masters.DataPropertyName = "Masters";
             this.Masters.HeaderText = "ФИО Мастера";
             this.Masters.Name = "Masters";
@@ -216,6 +223,7 @@
             // 
             // dateOfDepartureDataGridViewTextBoxColumn
             // 
+            this.dateOfDepartureDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dateOfDepartureDataGridViewTextBoxColumn.DataPropertyName = "DateOfDeparture";
             this.dateOfDepartureDataGridViewTextBoxColumn.HeaderText = "Дата выезда";
             this.dateOfDepartureDataGridViewTextBoxColumn.Name = "dateOfDepartureDataGridViewTextBoxColumn";
@@ -224,6 +232,7 @@
             // 
             // commentDataGridViewTextBoxColumn
             // 
+            this.commentDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
             this.commentDataGridViewTextBoxColumn.HeaderText = "Комментарий";
             this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
