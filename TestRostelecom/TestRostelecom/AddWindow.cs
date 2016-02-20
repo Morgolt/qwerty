@@ -15,16 +15,19 @@ namespace TestRostelecom
     public partial class AddWindow : Form
     {
 
-        private SecondaryRepository secondRep = new SecondaryRepository();
+        private SecondaryRepository secondRep;
         private RequestDatabaseDataContext requestDBContext;
         private RequestRepository requestRepo;
 
-        public AddWindow()
+        private void InitializeMembers()
         {
-            InitializeComponent();
+            secondRep = new SecondaryRepository();
             requestDBContext = new RequestDatabaseDataContext();
             requestRepo = new RequestRepository(requestDBContext);
+        }
 
+        private void InitializeComboBoxes()
+        {
             IList listServies = secondRep.GetServicesList();
             comboBoxServies.DataSource = listServies;
             comboBoxServies.DisplayMember = "Name";
@@ -41,13 +44,37 @@ namespace TestRostelecom
             comboBoxMasters.ValueMember = "Id";
         }
 
+        public AddWindow()
+        {
+            InitializeComponent();
+            InitializeMembers();
+            InitializeComboBoxes();
+        }
+
         public AddWindow(Requests request)
         {
             InitializeComponent();
-
+            InitializeMembers();
+            InitializeComboBoxes();
+            
+            // Fill TextBoxes
             textBoxClient.Text = request.Clients.FullName;
             textBoxAdress.Text = request.Address;
             textBoxComment.Text = request.Comment;
+
+            // Fill ComboBoxes
+            comboBoxServies.SelectedIndex = comboBoxServies.FindStringExact(request.Services.Name);
+            comboBoxOperators.SelectedIndex = comboBoxOperators.FindStringExact(request.Operators.FullName);
+            comboBoxMasters.SelectedIndex = comboBoxMasters.FindStringExact(request.Masters.FullName);
+
+            // Fill DateTimePickers
+            dateTimePicker1.Value = request.RequestDate;
+
+            //! TODO: FIX IT
+            //! NULLABLE TO DateTimePicker
+            //dateTimePicker2.Value = request.CloseDate.GetValueOrDefault(null);
+            //dateTimePicker3.Value = request.DateOfDeparture.Value;
+
         }
 
         private void buttonAdd_Click_1(object sender, EventArgs e)
@@ -56,6 +83,7 @@ namespace TestRostelecom
 
             if ((textBoxClient.Text == null) || (textBoxAdress.Text == null))
             {
+                // TODO: CHANGE IT
                 MessageBox.Show("Блять напиши что нибудь в пустые текст боксы");
             }
             else
