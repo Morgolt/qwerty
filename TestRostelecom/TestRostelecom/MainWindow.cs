@@ -15,7 +15,9 @@ namespace TestRostelecom
     {
         public MainForm()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            Export.ExportToExcel exp = new Export.ExportToExcel();
+            exp.ExportToXLS(new List<Requests>());
         }
     }
 }
