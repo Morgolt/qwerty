@@ -2,36 +2,62 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="RequestDatabase">
   <DataContextMoniker Name="/RequestDatabaseDataContext" />
   <nestedChildShapes>
-    <classShape Id="f6294b20-d764-470d-a856-ef5ef05279c1" absoluteBounds="1.625, 1.875, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/RequestDatabaseDataContext/Request" />
+    <classShape Id="d6f43e83-1ee9-4c37-8c16-b5f1db316459" absoluteBounds="3.625, 1.125, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/RequestDatabaseDataContext/Requests" />
       <nestedChildShapes>
-        <elementListCompartment Id="ab06d2e6-dda8-4691-bdfc-0ed99bb1ef65" absoluteBounds="1.6400000000000001, 2.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3d112fd1-c489-412e-806e-4069238661b7" absoluteBounds="3.64, 1.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7042a681-0315-4e00-a321-867c3d06d9a1" absoluteBounds="0.5, 0.5, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/RequestDatabaseDataContext/Operator" />
+    <classShape Id="f5455bba-420f-4b5c-a9d8-de7ff51ef95c" absoluteBounds="6, 1.25, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/RequestDatabaseDataContext/Services" />
       <nestedChildShapes>
-        <elementListCompartment Id="c71fa934-824a-4cfb-b2c8-9f5e13e676a0" absoluteBounds="0.515, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="0b679d80-400c-454e-a097-b9d5948c4f93" absoluteBounds="6.015, 1.7100000000000009, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.0625 : 1.69399251302083); (2.0625 : 1.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/RequestDatabaseDataContext/Operator/OperatorTable_RequestTable" />
+    <associationConnector edgePoints="[(6 : 1.84699625651042); (5.625 : 1.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/RequestDatabaseDataContext/Services/ServiceTable_RequestTable" />
       <nodes>
-        <classShapeMoniker Id="7042a681-0315-4e00-a321-867c3d06d9a1" />
-        <classShapeMoniker Id="f6294b20-d764-470d-a856-ef5ef05279c1" />
+        <classShapeMoniker Id="f5455bba-420f-4b5c-a9d8-de7ff51ef95c" />
+        <classShapeMoniker Id="d6f43e83-1ee9-4c37-8c16-b5f1db316459" />
       </nodes>
     </associationConnector>
-    <classShape Id="2abebf56-2209-47a0-b7ff-17eb5f1aea30" absoluteBounds="2.75, 0.5, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/RequestDatabaseDataContext/Client" />
+    <classShape Id="6ebb4566-1c25-4013-b807-897d18a909a7" absoluteBounds="1.125, 1.25, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/RequestDatabaseDataContext/Operators" />
       <nestedChildShapes>
-        <elementListCompartment Id="1519b2db-f0fc-45dd-8275-0c705892805c" absoluteBounds="2.765, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="dd6f577d-fe86-4735-8d4d-4db2f6e4616f" absoluteBounds="1.1399999999999997, 1.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.1875 : 1.69399251302083); (3.1875 : 1.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/RequestDatabaseDataContext/Client/ClientTable_RequestTable" />
+    <associationConnector edgePoints="[(3.125 : 1.84699625651042); (3.625 : 1.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/RequestDatabaseDataContext/Operators/OperatorTable_RequestTable" />
       <nodes>
-        <classShapeMoniker Id="2abebf56-2209-47a0-b7ff-17eb5f1aea30" />
-        <classShapeMoniker Id="f6294b20-d764-470d-a856-ef5ef05279c1" />
+        <classShapeMoniker Id="6ebb4566-1c25-4013-b807-897d18a909a7" />
+        <classShapeMoniker Id="d6f43e83-1ee9-4c37-8c16-b5f1db316459" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8d53495c-82b6-4bf8-9d27-f3c167d7ee43" absoluteBounds="6, 2.625, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/RequestDatabaseDataContext/Masters" />
+      <nestedChildShapes>
+        <elementListCompartment Id="96682442-5681-4ed5-a728-f8cb9047dabc" absoluteBounds="6.015, 3.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6 : 3.22199625651042); (5.625 : 3.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/RequestDatabaseDataContext/Masters/MasterTable_RequestTable" />
+      <nodes>
+        <classShapeMoniker Id="8d53495c-82b6-4bf8-9d27-f3c167d7ee43" />
+        <classShapeMoniker Id="d6f43e83-1ee9-4c37-8c16-b5f1db316459" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="69e861fb-2520-452b-abcb-2f56df7a7355" absoluteBounds="1.125, 2.625, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/RequestDatabaseDataContext/Clients" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2868faf8-c50c-4649-9395-a849855defc5" absoluteBounds="1.1400000000000001, 3.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.125 : 3.22199625651042); (3.625 : 3.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/RequestDatabaseDataContext/Clients/ClientTable_RequestTable" />
+      <nodes>
+        <classShapeMoniker Id="69e861fb-2520-452b-abcb-2f56df7a7355" />
+        <classShapeMoniker Id="d6f43e83-1ee9-4c37-8c16-b5f1db316459" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

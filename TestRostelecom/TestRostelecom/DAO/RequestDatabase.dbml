@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Test" Class="RequestDatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Test.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="TestRostelecom.Properties.Settings" SettingsPropertyName="TestConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.RequestTable" Member="Request">
-    <Type Name="Request">
+  <Table Name="dbo.RequestTable" Member="Requests">
+    <Type Name="Requests">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="RequestDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
@@ -10,22 +10,40 @@
       <Column Name="DateOfDeparture" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ClientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="OperatorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="OperatorTable_RequestTable" Member="Operator" Storage="_OperatorTable" ThisKey="OperatorId" OtherKey="Id" Type="Operator" IsForeignKey="true" />
-      <Association Name="ClientTable_RequestTable" Member="Client" Storage="_ClientTable" ThisKey="ClientId" OtherKey="Id" Type="Client" IsForeignKey="true" />
+      <Column Name="MasterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ServiceTable_RequestTable" Member="Services" ThisKey="ServiceId" OtherKey="Id" Type="Services" IsForeignKey="true" />
+      <Association Name="OperatorTable_RequestTable" Member="Operators" ThisKey="OperatorId" OtherKey="Id" Type="Operators" IsForeignKey="true" />
+      <Association Name="MasterTable_RequestTable" Member="Masters" ThisKey="MasterId" OtherKey="Id" Type="Masters" IsForeignKey="true" />
+      <Association Name="ClientTable_RequestTable" Member="Clients" ThisKey="ClientId" OtherKey="Id" Type="Clients" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.OperatorTable" Member="Operator">
-    <Type Name="Operator">
+  <Table Name="dbo.ServiceTable" Member="Services">
+    <Type Name="Services">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="ServiceTable_RequestTable" Member="Requests" ThisKey="Id" OtherKey="ServiceId" Type="Requests" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OperatorTable" Member="Operators">
+    <Type Name="Operators">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="FullName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="OperatorTable_RequestTable" Member="Request" Storage="_RequestTable" ThisKey="Id" OtherKey="OperatorId" Type="Request" />
+      <Association Name="OperatorTable_RequestTable" Member="Requests" ThisKey="Id" OtherKey="OperatorId" Type="Requests" />
     </Type>
   </Table>
-  <Table Name="dbo.ClientTable" Member="Client">
-    <Type Name="Client">
+  <Table Name="dbo.MasterTable" Member="Masters">
+    <Type Name="Masters">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="MasterTable_RequestTable" Member="Requests" ThisKey="Id" OtherKey="MasterId" Type="Requests" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClientTable" Member="Clients">
+    <Type Name="Clients">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="FullName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Association Name="ClientTable_RequestTable" Member="Request" Storage="_RequestTable" ThisKey="Id" OtherKey="ClientId" Type="Request" />
+      <Association Name="ClientTable_RequestTable" Member="Requests" ThisKey="Id" OtherKey="ClientId" Type="Requests" />
     </Type>
   </Table>
 </Database>
