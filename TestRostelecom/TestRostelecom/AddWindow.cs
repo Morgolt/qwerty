@@ -81,10 +81,10 @@ namespace TestRostelecom
         {
             //IList<Masters> masters = secondRep.GetMastersList();
 
-            if ((textBoxClient.Text == null) || (textBoxAdress.Text == null))
+            if ((textBoxClient.Text == "") || (textBoxAdress.Text == ""))
             {
                 // TODO: CHANGE IT
-                MessageBox.Show("Блять напиши что нибудь в пустые текст боксы");
+                MessageBox.Show("!!!Блять напиши что нибудь в пустые текст боксы!!!");
             }
             else
             {
@@ -102,6 +102,9 @@ namespace TestRostelecom
                 request.ServiceId = ((Services)comboBoxServies.SelectedItem).Id;
                 request.Comment = textBoxComment.Text;
                 request.Address = textBoxAdress.Text;
+                request.RequestDate = dateTimePicker1.Value;
+                request.CloseDate = dateTimePicker2.Value;
+                request.DateOfDeparture = dateTimePicker3.Value;
                 requestRepo.CreateRequest(request);
             }
         }

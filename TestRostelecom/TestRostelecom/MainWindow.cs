@@ -70,8 +70,11 @@ namespace TestRostelecom
 
         private void addRequestToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
+
             AddWindow addWindow = new AddWindow();
             addWindow.ShowDialog();
+            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
         }
     }
 }
