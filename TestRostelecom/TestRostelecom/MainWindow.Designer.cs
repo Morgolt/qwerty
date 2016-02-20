@@ -39,8 +39,8 @@
             this.chooseDateFrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testButtonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.requestsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clientsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requestDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.closeDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,7 +50,7 @@
             this.Masters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfDepartureDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testButtonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.requestsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.requestsBindingSource)).BeginInit();
@@ -114,6 +114,7 @@
             this.addRequestToolStripMenuItem.Name = "addRequestToolStripMenuItem";
             this.addRequestToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.addRequestToolStripMenuItem.Text = "Добавить заявку";
+            this.addRequestToolStripMenuItem.Click += new System.EventHandler(this.addRequestToolStripMenuItem_Click);
             // 
             // chooseDateFrameToolStripMenuItem
             // 
@@ -136,6 +137,13 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.aboutToolStripMenuItem.Text = "О приложении";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // testButtonToolStripMenuItem
+            // 
+            this.testButtonToolStripMenuItem.Name = "testButtonToolStripMenuItem";
+            this.testButtonToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.testButtonToolStripMenuItem.Text = "Test Button";
+            this.testButtonToolStripMenuItem.Click += new System.EventHandler(this.testButtonToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
@@ -162,10 +170,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(984, 517);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // requestsBindingSource
-            // 
-            this.requestsBindingSource.DataSource = typeof(TestRostelecom.DAO.Requests);
             // 
             // clientsDataGridViewTextBoxColumn
             // 
@@ -241,12 +245,9 @@
             this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
             this.commentDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // testButtonToolStripMenuItem
+            // requestsBindingSource
             // 
-            this.testButtonToolStripMenuItem.Name = "testButtonToolStripMenuItem";
-            this.testButtonToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.testButtonToolStripMenuItem.Text = "Test Button";
-            this.testButtonToolStripMenuItem.Click += new System.EventHandler(this.testButtonToolStripMenuItem_Click);
+            this.requestsBindingSource.DataSource = typeof(TestRostelecom.DAO.Requests);
             // 
             // MainForm
             // 

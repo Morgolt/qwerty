@@ -8,7 +8,12 @@ namespace TestRostelecom.DAO
 {
     class RequestRepository
     {
-        private RequestDatabaseDataContext db = new RequestDatabaseDataContext();
+        private RequestDatabaseDataContext db;
+
+        public RequestRepository(RequestDatabaseDataContext context)
+        {
+            this.db = context;
+        }
 
         public Requests GetRequestById(int id)
         {
