@@ -28,5 +28,11 @@ namespace TestRostelecom
 
             var y = requestDBContext.Masters.Single(x => x.Id == 2).FullName;
         }
+
+        private void addRequestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddWindow addWindow = new AddWindow();
+            addWindow.ShowDialog();
+        }
     }
 }

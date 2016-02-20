@@ -40,16 +40,16 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.requestsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Masters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requestDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.closeDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.servicesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.operatorsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Masters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfDepartureDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.requestsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.requestsBindingSource)).BeginInit();
@@ -109,6 +109,7 @@
             this.addRequestToolStripMenuItem.Name = "addRequestToolStripMenuItem";
             this.addRequestToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.addRequestToolStripMenuItem.Text = "Add Request";
+            this.addRequestToolStripMenuItem.Click += new System.EventHandler(this.addRequestToolStripMenuItem_Click);
             // 
             // chooseDateFrameToolStripMenuItem
             // 
@@ -153,9 +154,12 @@
             this.dataGridView1.Size = new System.Drawing.Size(984, 526);
             this.dataGridView1.TabIndex = 1;
             // 
-            // requestsBindingSource
+            // Masters
             // 
-            this.requestsBindingSource.DataSource = typeof(TestRostelecom.DAO.Requests);
+            this.Masters.DataPropertyName = "Masters";
+            this.Masters.HeaderText = "Masters";
+            this.Masters.Name = "Masters";
+            this.Masters.ReadOnly = true;
             // 
             // clientsDataGridViewTextBoxColumn
             // 
@@ -199,13 +203,6 @@
             this.operatorsDataGridViewTextBoxColumn.Name = "operatorsDataGridViewTextBoxColumn";
             this.operatorsDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // Masters
-            // 
-            this.Masters.DataPropertyName = "Masters";
-            this.Masters.HeaderText = "Masters";
-            this.Masters.Name = "Masters";
-            this.Masters.ReadOnly = true;
-            // 
             // dateOfDepartureDataGridViewTextBoxColumn
             // 
             this.dateOfDepartureDataGridViewTextBoxColumn.DataPropertyName = "DateOfDeparture";
@@ -219,6 +216,10 @@
             this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
             this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
             this.commentDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // requestsBindingSource
+            // 
+            this.requestsBindingSource.DataSource = typeof(TestRostelecom.DAO.Requests);
             // 
             // MainForm
             // 
