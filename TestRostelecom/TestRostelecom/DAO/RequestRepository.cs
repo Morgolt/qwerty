@@ -8,7 +8,12 @@ namespace TestRostelecom.DAO
 {
     class RequestRepository
     {
-        private RequestDatabaseDataContext db = new RequestDatabaseDataContext();
+        private RequestDatabaseDataContext db;
+
+        public RequestRepository(RequestDatabaseDataContext context)
+        {
+            this.db = context;
+        }
 
         public Requests GetRequestById(int id)
         {
@@ -44,6 +49,11 @@ namespace TestRostelecom.DAO
         public IEnumerable<Requests> GetRequestsByDateTimeFrame(DateTime begin, DateTime end)
         {
             return db.Requests.Where(x => ((x.RequestDate >= begin) && (x.RequestDate <= end)));            
+        }
+
+        public IEnumerable<Requests> GetAllRequest()
+        {
+            return db.Requests;
         }
     }
 }
