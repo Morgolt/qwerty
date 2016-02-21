@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestRostelecom.DAO;
 using TestRostelecom.Export;
+using TestRostelecom.Filter;
 
 namespace TestRostelecom
 {
@@ -96,6 +97,18 @@ namespace TestRostelecom
                 export.ExportToXLS(this.dataGridView1, path);
                 MessageBox.Show("OK");
             }
+        }
+
+        private void chooseDateFrameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FilterForm filterForm = new FilterForm();
+            filterForm.Owner = this;
+            filterForm.ShowDialog();            
+        }
+
+        public void FilterDataInDataGrid(DateTime begin, DateTime end)
+        {
+            dataGridView1.DataSource = requestRepo.GetRequestsByDateTimeFrame(begin, end);
         }
     }
 }
