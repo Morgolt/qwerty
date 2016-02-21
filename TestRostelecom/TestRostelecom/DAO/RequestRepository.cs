@@ -50,7 +50,7 @@ namespace TestRostelecom.DAO
 
         public IEnumerable<Requests> GetRequestsByDateTimeFrame(DateTime begin, DateTime end)
         {
-            return db.Requests.Where(x => ((x.RequestDate >= begin) && (x.RequestDate <= end)));
+            return db.Requests.Where(x => ((x.RequestDate >= begin) && (x.RequestDate <= end)));            
         }
 
         public IEnumerable<Requests> GetAllRequest()
