@@ -21,8 +21,13 @@ namespace TestRostelecom.Filter
         {
             DateTime from = this.firstDateTimePicker.Value;
             DateTime to = this.secondDateTimePicker.Value;
-            (this.Owner as MainForm).FilterDataInDataGrid(from, to);
-            this.Close();
+            if (from >= to)
+                MessageBox.Show("Введены неверные даты.");
+            else
+            {
+                (this.Owner as MainForm).FilterDataInDataGrid(from, to);
+                this.Close();
+            }
         }        
     }
 }
