@@ -117,10 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="requestsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="requestsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Тестовое задание для кейса «Разработка  ПО учета заявок» Ростелеком
+
+Задача: разработать приложение формирующее единый документ в формате Microsoft Excel содержащий в себе информацию о заявках на подключение. 
+Заявка на подключение содержит в себе следующую информацию:
+•	Дата заявки – выбор из списка;
+•	ФИО Клиента – ручной ввод;
+•	Адрес – ручной ввод;
+•	Подключаемая Услуга (Интернет/TV/Телефон) – выбор из БД;
+•	ФИО Оператора принявшего заявку – выбор из базы данны;
+•	Планируемая дата выезда мастера – выбор из списка;
+•	ФИО Мастера – выбор из базы данных;
+•	Дата закрытия заявки – выбор из списка
+•	Комментарий ручной ввод;
+
+На основе описания спроектировать и реализовать базу данных. 
+Приложение должно позволять создавать, редактировать и сохранять заявки в базу данных. 
+Приложение должно позволять выгружать заявки за выбранный календарный период в XLS документ. 
+
+Задание выполнила команда qwerty (СПбГУ):
+Мартынов Родион
+Югов Илья
+Суратов Владислав</value>
+  </data>
 </root>
