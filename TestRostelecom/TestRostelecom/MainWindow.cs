@@ -85,5 +85,10 @@ namespace TestRostelecom
                 MessageBox.Show(this, "OK", "Экспорт в Excel");
             }
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
