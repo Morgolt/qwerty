@@ -57,7 +57,8 @@ namespace TestRostelecom
         
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-  
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.ShowDialog();
         }
 
         private void addRequestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,6 +84,11 @@ namespace TestRostelecom
                 export.ExportToXLS(this.dataGridView1, path);
                 MessageBox.Show(this, "OK", "Экспорт в Excel");
             }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
