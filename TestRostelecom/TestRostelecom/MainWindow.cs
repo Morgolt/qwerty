@@ -15,17 +15,13 @@ namespace TestRostelecom
 {
     public partial class MainForm : Form
     {
-        private RequestDatabaseDataContext requestDBContext;
-        private RequestRepository requestRepo;
-        private SecondaryRepository secondaryRepo;
+        private Service.Service service;
 
         public MainForm()
         {
             InitializeComponent();
 
-            requestDBContext = new RequestDatabaseDataContext();
-            requestRepo = new RequestRepository(requestDBContext);
-            secondaryRepo = new SecondaryRepository(requestDBContext);
+            service = new Service.Service();
 
             dataGridView1.CellDoubleClick += DataGridView1_CellContentDoubleClick;
             dataGridView1.RowHeaderMouseDoubleClick += DataGridView1_RowHeaderMouseDoubleClick;
@@ -47,12 +43,12 @@ namespace TestRostelecom
 
         private void CreateEditDialog(int rowIndex)
         {
-            AddWindow addWindow = new AddWindow((Requests)dataGridView1.Rows[rowIndex].DataBoundItem, requestDBContext, requestRepo, secondaryRepo);
+            AddWindow addWindow = new AddWindow((Requests)dataGridView1.Rows[rowIndex].DataBoundItem, service);
             addWindow.Text = "Редактирование существующей заявки";
             addWindow.ShowDialog();
 
             // HACK: According to https://msdn.microsoft.com/en-us/library/bb384428.aspx
-            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
+            dataGridView1.DataSource = service.getDataSource();
         }
 
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -67,7 +63,7 @@ namespace TestRostelecom
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            requestsBindingSource.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
+            requestsBindingSource.DataSource = service.getDataSource();
         }
         
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -78,13 +74,13 @@ namespace TestRostelecom
 
         private void addRequestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
+            dataGridView1.DataSource = service.getDataSource();
 
-            AddWindow addWindow = new AddWindow(requestDBContext, requestRepo, secondaryRepo);
+            AddWindow addWindow = new AddWindow(service);
             addWindow.ShowDialog();
 
             // HACK: According to https://msdn.microsoft.com/en-us/library/bb384428.aspx
-            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
+            dataGridView1.DataSource = service.getDataSource();
         }
 
         private void exportToExcelToolStripMenuItem_Click(object sender, EventArgs e)
