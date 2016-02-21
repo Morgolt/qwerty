@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestRostelecom.DAO;
 
@@ -14,51 +8,46 @@ namespace TestRostelecom
 {
     public partial class AddWindow : Form
     {
-
-        private SecondaryRepository secondaryRepo;
-        private RequestDatabaseDataContext requestDBContext;
-        private RequestRepository requestRepo;
         private bool isEditMode;
         private Requests requestToEdit;
+        private Service.Service service;
 
-        private void InitializeMembers(RequestDatabaseDataContext requestDbContext, RequestRepository requestRepo, SecondaryRepository secondaryRepo)
+        private void InitializeMembers(Service.Service service)
         {
             this.isEditMode = false;
             this.requestToEdit = null;
-            this.requestDBContext = requestDbContext;
-            this.requestRepo = requestRepo;
-            this.secondaryRepo = secondaryRepo;
+            this.service = service;
         }
 
         private void InitializeComboBoxes()
         {
-            IList listServies = this.secondaryRepo.GetServicesList();
+            IList listServies = service.getListServices();
             this.comboBoxServices.DataSource = listServies;
             this.comboBoxServices.DisplayMember = "Name";
             this.comboBoxServices.ValueMember = "Id";
 
-            IList listOperations = this.secondaryRepo.GetOperatorsList();
+            IList listOperations = service.getListOperators();
             this.comboBoxOperators.DataSource = listOperations;
             this.comboBoxOperators.DisplayMember = "FullName";
             this.comboBoxOperators.ValueMember = "Id";
 
-            IList listMasters = this.secondaryRepo.GetMastersList();
+            IList listMasters = service.getListMasters();
             this.comboBoxMasters.DataSource = listMasters;
             this.comboBoxMasters.DisplayMember = "FullName";
             this.comboBoxMasters.ValueMember = "Id";
         }
 
-        public AddWindow(RequestDatabaseDataContext requestDbContext, RequestRepository requestRepo, SecondaryRepository secondaryRepo)
+        public AddWindow(Service.Service service)
         {
             this.InitializeComponent();
-            this.InitializeMembers(requestDbContext, requestRepo, secondaryRepo);
+            this.InitializeMembers(service);
             this.InitializeComboBoxes();
         }
 
-        public AddWindow(Requests request, RequestDatabaseDataContext requestDbContext, RequestRepository requestRepo, SecondaryRepository secondaryRepo)
+        public AddWindow(Requests request, Service.Service service)
         {
             this.InitializeComponent();
-            this.InitializeMembers(requestDbContext, requestRepo, secondaryRepo);
+            this.InitializeMembers(service);
             this.InitializeComboBoxes();
             
             // Fill TextBoxes
@@ -89,47 +78,28 @@ namespace TestRostelecom
             }
             else
             {
-                Clients client = new Clients();
-                client.FullName = this.textBoxClient.Text;
-
-                if (this.secondaryRepo.GetClientByFullName(this.textBoxClient.Text) == null)
-                {
-                    this.secondaryRepo.CreateClient(client);
-                }
+                string message;
 
                 if (this.isEditMode)
                 {
-                    this.requestToEdit.Clients      = this.requestDBContext.Clients.Single(x => x.Id == this.secondaryRepo.GetClientByFullName(this.textBoxClient.Text).Id);
-                    this.requestToEdit.Masters      = this.requestDBContext.Masters.Single(x => x.Id == ((Masters)this.comboBoxMasters.SelectedItem).Id);
-                    this.requestToEdit.Operators    = this.requestDBContext.Operators.Single(x => x.Id == ((Operators)this.comboBoxOperators.SelectedItem).Id);
-                    this.requestToEdit.Services     = this.requestDBContext.Services.Single(x => x.Id == ((Services)this.comboBoxServices.SelectedItem).Id);
-
-                    this.requestToEdit.Comment      = this.textBoxComment.Text;
-                    this.requestToEdit.Address      = this.textBoxAdress.Text;
-                    this.requestToEdit.RequestDate  = this.dateTimePickerRequest.Value;
-                    this.requestToEdit.CloseDate    = this.dateTimePickerCloseRequest.Value;
-                    this.requestToEdit.DateOfDeparture = this.dateTimePickerDepature.Value;
-
-                    requestDBContext.SubmitChanges();
-                    //requestRepo.UpdateRequest(requestToEdit);
+                    message = service.UpdateRequest(requestToEdit, textBoxClient.Text,
+                        ((Masters)comboBoxMasters.SelectedItem).Id,
+                        ((Operators)this.comboBoxOperators.SelectedItem).Id,
+                        ((Services)this.comboBoxServices.SelectedItem).Id,
+                        textBoxComment.Text, textBoxAdress.Text,
+                        dateTimePickerRequest.Value, dateTimePickerCloseRequest.Value, dateTimePickerDepature.Value);
                 }
                 else
                 {
-                    Requests request = new Requests();
-
-                    request.ClientId = this.secondaryRepo.GetClientByFullName(this.textBoxClient.Text).Id;
-                    request.MasterId = ((Masters)this.comboBoxMasters.SelectedItem).Id;
-                    request.OperatorId = ((Operators)this.comboBoxOperators.SelectedItem).Id;
-                    request.ServiceId = ((Services)this.comboBoxServices.SelectedItem).Id;
-                    request.Comment = this.textBoxComment.Text;
-                    request.Address = this.textBoxAdress.Text;
-                    request.RequestDate = this.dateTimePickerRequest.Value;
-                    request.CloseDate = this.dateTimePickerCloseRequest.Value;
-                    request.DateOfDeparture = this.dateTimePickerDepature.Value;
-
-                    requestRepo.CreateRequest(request);
+                    message = service.CreateRequest(textBoxClient.Text,
+                        ((Masters)comboBoxMasters.SelectedItem).Id,
+                        ((Operators)this.comboBoxOperators.SelectedItem).Id,
+                        ((Services)this.comboBoxServices.SelectedItem).Id,
+                        textBoxComment.Text, textBoxAdress.Text,
+                        dateTimePickerRequest.Value, dateTimePickerCloseRequest.Value, dateTimePickerDepature.Value);
                 }
 
+                MessageBox.Show(this, message, "Уведомление");
                 this.Close();
             }
         }

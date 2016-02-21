@@ -122,6 +122,7 @@
             this.chooseDateFrameToolStripMenuItem.Name = "chooseDateFrameToolStripMenuItem";
             this.chooseDateFrameToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.chooseDateFrameToolStripMenuItem.Text = "Выбрать календарный период";
+            //this.chooseDateFrameToolStripMenuItem.Click += new System.EventHandler(this.chooseDateFrameToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 

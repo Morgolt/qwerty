@@ -58,15 +58,27 @@ namespace TestRostelecom.DAO
             return db.Clients.ToDictionary(x => x.Id, x => x.FullName);
         }
 
-        public void CreateClient(Clients client)
+        public Clients CreateClient(Clients client)
         {
             db.Clients.InsertOnSubmit(client);
             db.SubmitChanges();
+            return client;
         }
-
-        public Clients GetClientByFullName(string fullName)
+        public Clients GetClientById(int id)
         {
-            return db.Clients.SingleOrDefault(x => x.FullName == fullName);
+            return db.Clients.Single(x => x.Id == id);
+        }
+        public Masters GetMasterById(int id)
+        {
+            return db.Masters.Single(x => x.Id == id);
+        }
+        public Operators GetOperatorById(int id)
+        {
+            return db.Operators.Single(x => x.Id == id);
+        }
+        public Services GetServiceById(int id)
+        {
+            return db.Services.Single(x => x.Id == id);
         }
     }
 }
