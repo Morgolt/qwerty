@@ -16,23 +16,42 @@ namespace TestRostelecom
     {
         private RequestDatabaseDataContext requestDBContext;
         private RequestRepository requestRepo;
+        private SecondaryRepository secondaryRepo;
 
         public MainForm()
         {
             InitializeComponent();
+
             requestDBContext = new RequestDatabaseDataContext();
             requestRepo = new RequestRepository(requestDBContext);
+            secondaryRepo = new SecondaryRepository(requestDBContext);
+
+            dataGridView1.CellContentDoubleClick += DataGridView1_CellContentDoubleClick;
+            dataGridView1.RowHeaderMouseDoubleClick += DataGridView1_RowHeaderMouseDoubleClick;
+        }
+
+        private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            AddWindow addWindow = new AddWindow((Requests)dataGridView1.Rows[e.RowIndex].DataBoundItem, requestDBContext, requestRepo, secondaryRepo);
+            addWindow.Text = "Редакирование существующей заявки";
+            addWindow.ShowDialog();
+            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
+        }
+
+        private void DataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AddWindow addWindow = new AddWindow((Requests)dataGridView1.Rows[e.RowIndex].DataBoundItem, requestDBContext, requestRepo, secondaryRepo);
+            addWindow.Text = "Редакирование существующей заявки";
+            addWindow.ShowDialog();
+            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            BindingList<Requests> bl = new BindingList<Requests>(requestDBContext.Requests.ToList());
-            bl.AllowNew = true;
-            requestsBindingSource.DataSource = bl;
-            
-            //requestsBindingSource.DataSource = requestRepo.GetAllRequest();
+            requestsBindingSource.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
         }
 
+        // TODO: DELETE IT
         private void testButtonToolStripMenuItem_Click(object sender, EventArgs e)
         {            
             Requests req = new Requests();
@@ -60,7 +79,7 @@ namespace TestRostelecom
         {
             dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
 
-            AddWindow addWindow = new AddWindow();
+            AddWindow addWindow = new AddWindow(requestDBContext, requestRepo, secondaryRepo);
             addWindow.ShowDialog();
             dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
         }
