@@ -19,9 +19,9 @@ namespace TestRostelecom.Filter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DateTime from = this.firstDateTimePicker.Value;
-            DateTime to = this.secondDateTimePicker.Value;
-            if (from >= to)
+            DateTime from = this.firstDateTimePicker.Value.Date;
+            DateTime to = this.secondDateTimePicker.Value.Date;
+            if (from > to)
                 MessageBox.Show("Введены неверные даты.");
             else
             {
