@@ -37,7 +37,7 @@ namespace TestRostelecom
             }
             else
             {
-                dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
+                dataGridView1.DataSource = service.getDataSource();
             }
         }
 
@@ -107,7 +107,7 @@ namespace TestRostelecom
 
         public void FilterDataInDataGrid(DateTime begin, DateTime end)
         {
-            dataGridView1.DataSource = requestRepo.GetRequestsByDateTimeFrame(begin, end);
+            dataGridView1.DataSource = service.GetRequestsByDateTimeFrame(begin, end);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
