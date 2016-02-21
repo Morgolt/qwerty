@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.textBoxClient = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerRequest = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerCloseRequest = new System.Windows.Forms.DateTimePicker();
             this.textBoxAdress = new System.Windows.Forms.TextBox();
-            this.comboBoxServies = new System.Windows.Forms.ComboBox();
+            this.comboBoxServices = new System.Windows.Forms.ComboBox();
             this.requestsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBoxOperators = new System.Windows.Forms.ComboBox();
             this.comboBoxMasters = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDepature = new System.Windows.Forms.DateTimePicker();
             this.textBoxComment = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,19 +59,24 @@
             this.textBoxClient.Size = new System.Drawing.Size(478, 20);
             this.textBoxClient.TabIndex = 0;
             // 
-            // dateTimePicker1
+            // dateTimePickerRequest
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 80);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(130, 20);
-            this.dateTimePicker1.TabIndex = 2;
+            this.dateTimePickerRequest.CustomFormat = "";
+            this.dateTimePickerRequest.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerRequest.Location = new System.Drawing.Point(12, 80);
+            this.dateTimePickerRequest.Name = "dateTimePickerRequest";
+            this.dateTimePickerRequest.Size = new System.Drawing.Size(143, 20);
+            this.dateTimePickerRequest.TabIndex = 2;
+            this.dateTimePickerRequest.Value = new System.DateTime(2016, 2, 21, 0, 0, 0, 0);
             // 
-            // dateTimePicker2
+            // dateTimePickerCloseRequest
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(173, 80);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(143, 20);
-            this.dateTimePicker2.TabIndex = 3;
+            this.dateTimePickerCloseRequest.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerCloseRequest.Location = new System.Drawing.Point(179, 80);
+            this.dateTimePickerCloseRequest.Name = "dateTimePickerCloseRequest";
+            this.dateTimePickerCloseRequest.Size = new System.Drawing.Size(143, 20);
+            this.dateTimePickerCloseRequest.TabIndex = 3;
+            this.dateTimePickerCloseRequest.Value = new System.DateTime(2016, 2, 21, 0, 0, 0, 0);
             // 
             // textBoxAdress
             // 
@@ -80,14 +85,14 @@
             this.textBoxAdress.Size = new System.Drawing.Size(478, 20);
             this.textBoxAdress.TabIndex = 4;
             // 
-            // comboBoxServies
+            // comboBoxServices
             // 
-            this.comboBoxServies.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.requestsBindingSource, "Services", true));
-            this.comboBoxServies.FormattingEnabled = true;
-            this.comboBoxServies.Location = new System.Drawing.Point(12, 171);
-            this.comboBoxServies.Name = "comboBoxServies";
-            this.comboBoxServies.Size = new System.Drawing.Size(478, 21);
-            this.comboBoxServies.TabIndex = 5;
+            this.comboBoxServices.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.requestsBindingSource, "Services", true));
+            this.comboBoxServices.FormattingEnabled = true;
+            this.comboBoxServices.Location = new System.Drawing.Point(12, 171);
+            this.comboBoxServices.Name = "comboBoxServices";
+            this.comboBoxServices.Size = new System.Drawing.Size(478, 21);
+            this.comboBoxServices.TabIndex = 5;
             // 
             // requestsBindingSource
             // 
@@ -111,19 +116,21 @@
             this.comboBoxMasters.Size = new System.Drawing.Size(478, 21);
             this.comboBoxMasters.TabIndex = 7;
             // 
-            // dateTimePicker3
+            // dateTimePickerDepature
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(347, 80);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(143, 20);
-            this.dateTimePicker3.TabIndex = 8;
+            this.dateTimePickerDepature.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDepature.Location = new System.Drawing.Point(347, 80);
+            this.dateTimePickerDepature.Name = "dateTimePickerDepature";
+            this.dateTimePickerDepature.Size = new System.Drawing.Size(143, 20);
+            this.dateTimePickerDepature.TabIndex = 8;
+            this.dateTimePickerDepature.Value = new System.DateTime(2016, 2, 21, 0, 0, 0, 0);
             // 
             // textBoxComment
             // 
-            this.textBoxComment.Location = new System.Drawing.Point(536, 26);
+            this.textBoxComment.Location = new System.Drawing.Point(514, 25);
             this.textBoxComment.Multiline = true;
             this.textBoxComment.Name = "textBoxComment";
-            this.textBoxComment.Size = new System.Drawing.Size(241, 253);
+            this.textBoxComment.Size = new System.Drawing.Size(222, 261);
             this.textBoxComment.TabIndex = 9;
             // 
             // label1
@@ -131,9 +138,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Клиент";
+            this.label1.Text = "ФИО Клиента";
             // 
             // label2
             // 
@@ -147,7 +154,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(170, 64);
+            this.label3.Location = new System.Drawing.Point(176, 64);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(124, 13);
             this.label3.TabIndex = 12;
@@ -192,7 +199,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(533, 9);
+            this.label8.Location = new System.Drawing.Point(511, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 13);
             this.label8.TabIndex = 17;
@@ -201,7 +208,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 249);
+            this.label9.Location = new System.Drawing.Point(12, 249);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(45, 13);
             this.label9.TabIndex = 18;
@@ -209,7 +216,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(193, 312);
+            this.buttonAdd.Location = new System.Drawing.Point(12, 332);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(142, 37);
             this.buttonAdd.TabIndex = 19;
@@ -221,7 +228,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 381);
+            this.ClientSize = new System.Drawing.Size(749, 381);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -233,15 +240,19 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxComment);
-            this.Controls.Add(this.dateTimePicker3);
+            this.Controls.Add(this.dateTimePickerDepature);
             this.Controls.Add(this.comboBoxMasters);
             this.Controls.Add(this.comboBoxOperators);
-            this.Controls.Add(this.comboBoxServies);
+            this.Controls.Add(this.comboBoxServices);
             this.Controls.Add(this.textBoxAdress);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePickerCloseRequest);
+            this.Controls.Add(this.dateTimePickerRequest);
             this.Controls.Add(this.textBoxClient);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Добавить заявку";
             ((System.ComponentModel.ISupportInitialize)(this.requestsBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -252,14 +263,14 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBoxClient;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerRequest;
+        private System.Windows.Forms.DateTimePicker dateTimePickerCloseRequest;
         private System.Windows.Forms.TextBox textBoxAdress;
-        private System.Windows.Forms.ComboBox comboBoxServies;
+        private System.Windows.Forms.ComboBox comboBoxServices;
         private System.Windows.Forms.BindingSource requestsBindingSource;
         private System.Windows.Forms.ComboBox comboBoxOperators;
         private System.Windows.Forms.ComboBox comboBoxMasters;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDepature;
         private System.Windows.Forms.TextBox textBoxComment;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

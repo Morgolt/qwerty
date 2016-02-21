@@ -26,50 +26,35 @@ namespace TestRostelecom
             requestRepo = new RequestRepository(requestDBContext);
             secondaryRepo = new SecondaryRepository(requestDBContext);
 
-            dataGridView1.CellContentDoubleClick += DataGridView1_CellContentDoubleClick;
+            dataGridView1.CellDoubleClick += DataGridView1_CellContentDoubleClick;
             dataGridView1.RowHeaderMouseDoubleClick += DataGridView1_RowHeaderMouseDoubleClick;
+        }
+
+        private void CreateEditDialog(int rowIndex)
+        {
+            AddWindow addWindow = new AddWindow((Requests)dataGridView1.Rows[rowIndex].DataBoundItem, requestDBContext, requestRepo, secondaryRepo);
+            addWindow.Text = "Редактирование существующей заявки";
+            addWindow.ShowDialog();
+
+            // HACK: According to https://msdn.microsoft.com/en-us/library/bb384428.aspx
+            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
         }
 
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            AddWindow addWindow = new AddWindow((Requests)dataGridView1.Rows[e.RowIndex].DataBoundItem, requestDBContext, requestRepo, secondaryRepo);
-            addWindow.Text = "Редакирование существующей заявки";
-            addWindow.ShowDialog();
-            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
+            this.CreateEditDialog(e.RowIndex);
         }
 
         private void DataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            AddWindow addWindow = new AddWindow((Requests)dataGridView1.Rows[e.RowIndex].DataBoundItem, requestDBContext, requestRepo, secondaryRepo);
-            addWindow.Text = "Редакирование существующей заявки";
-            addWindow.ShowDialog();
-            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
+            this.CreateEditDialog(e.RowIndex);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             requestsBindingSource.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
         }
-
-        // TODO: DELETE IT
-        private void testButtonToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
-            Requests req = new Requests();
-            req.ClientId = 2;
-            req.MasterId = 2;
-            req.OperatorId = 2;
-            req.ServiceId = 3;
-            req.Address = "test address";
-            req.RequestDate = DateTime.Parse("2/2/1999");
-
-            //requestRepo.CreateRequest(req);
-            //according to https://msdn.microsoft.com/en-us/library/bb384428.aspx
-            requestRepo.CreateRequest(req);            
-            dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
-            
-
-        }
-
+        
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
   
@@ -81,20 +66,22 @@ namespace TestRostelecom
 
             AddWindow addWindow = new AddWindow(requestDBContext, requestRepo, secondaryRepo);
             addWindow.ShowDialog();
+
+            // HACK: According to https://msdn.microsoft.com/en-us/library/bb384428.aspx
             dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
         }
 
         private void exportToExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Excel 2003 files (*.xls)|*.xls|Excel 2007/10/13/16 files|*.xlsx";
+            sfd.Filter = "Excel 97-2003 files (*.xls)|*.xls|Excel 2007/2010/2013/2016 files|*.xlsx";
             sfd.RestoreDirectory = true;
             if (sfd.ShowDialog(this) == DialogResult.OK)
             {
                 string path = sfd.FileName;
                 ExportToExcel export = new ExportToExcel();
                 export.ExportToXLS(this.dataGridView1, path);
-                MessageBox.Show("OK");
+                MessageBox.Show(this, "OK", "Экспорт в Excel");
             }
         }
     }
