@@ -10,10 +10,10 @@ namespace TestRostelecom.Service
 {
     public class Service
     {
-
-        private RequestRepository requestRepo;
-        private SecondaryRepository secondaryRepo;
-        private RequestDatabaseDataContext requestDBContext;
+        //test case public
+        public RequestRepository requestRepo;
+        public SecondaryRepository secondaryRepo;
+        public RequestDatabaseDataContext requestDBContext;
 
         public Service()
         {
@@ -97,6 +97,10 @@ namespace TestRostelecom.Service
 
             return "Заявка успешно изменена";
 
+        }
+        public IEnumerable<Requests> GetRequestsByDateTimeFrame(DateTime begin, DateTime end)
+        {
+            return requestRepo.GetRequestsByDateTimeFrame(begin, end);
         }
     }
 }
