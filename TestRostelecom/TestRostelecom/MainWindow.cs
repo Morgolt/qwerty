@@ -29,6 +29,20 @@ namespace TestRostelecom
 
             dataGridView1.CellContentDoubleClick += DataGridView1_CellContentDoubleClick;
             dataGridView1.RowHeaderMouseDoubleClick += DataGridView1_RowHeaderMouseDoubleClick;
+            chooseDateFrameToolStripMenuItem.CheckedChanged += ChooseDateFrameToolStripMenuItem_CheckedChanged;
+            chooseDateFrameToolStripMenuItem.CheckOnClick = true;                   
+        }
+
+        private void ChooseDateFrameToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chooseDateFrameToolStripMenuItem.Checked)
+            {
+                chooseDateFrameToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                dataGridView1.DataSource = new BindingList<Requests>(requestDBContext.Requests.ToList());
+            }
         }
 
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
