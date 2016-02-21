@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestRostelecom.DAO;
 using TestRostelecom.Export;
+using TestRostelecom.Filter;
 
 namespace TestRostelecom
 {
@@ -24,6 +25,20 @@ namespace TestRostelecom
 
             dataGridView1.CellDoubleClick += DataGridView1_CellContentDoubleClick;
             dataGridView1.RowHeaderMouseDoubleClick += DataGridView1_RowHeaderMouseDoubleClick;
+            chooseDateFrameToolStripMenuItem.CheckedChanged += ChooseDateFrameToolStripMenuItem_CheckedChanged;
+            chooseDateFrameToolStripMenuItem.CheckOnClick = true;                   
+        }
+
+        private void ChooseDateFrameToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chooseDateFrameToolStripMenuItem.Checked)
+            {
+                chooseDateFrameToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                dataGridView1.DataSource = service.getDataSource();
+            }
         }
 
         private void CreateEditDialog(int rowIndex)
@@ -80,6 +95,19 @@ namespace TestRostelecom
                 export.ExportToXLS(this.dataGridView1, path);
                 MessageBox.Show(this, "OK", "Экспорт в Excel");
             }
+        }
+
+
+        private void chooseDateFrameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FilterForm filterForm = new FilterForm();
+            filterForm.Owner = this;
+            filterForm.ShowDialog();            
+        }
+
+        public void FilterDataInDataGrid(DateTime begin, DateTime end)
+        {
+            dataGridView1.DataSource = service.GetRequestsByDateTimeFrame(begin, end);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
