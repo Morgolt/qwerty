@@ -38,43 +38,6 @@ namespace TestRostelecom.Export
             }
         }        
 
-        /*private void CreateWorkSheet(WorksheetPart worksheetPart, DataGridView dgv)
-        {
-            Worksheet worksheet = new Worksheet();
-            SheetData sheetData = new SheetData();
-
-            UInt32Value currRowIndex = 1U;
-            int colIndex = 0;
-            Row excelRow;
-
-            foreach(DataGridViewRow row in dgv.Rows)
-            {
-                excelRow = new Row();
-                excelRow.RowIndex = currRowIndex++;
-
-                foreach(DataGridViewColumn col in dgv.Columns)
-                {
-                    Cell cell = new Cell();
-                    CellValue cellValue = new CellValue();                    
-                    cellValue.Text = row.Cells[colIndex].Value?.ToString();
-                    cell.Append(cellValue);
-                    excelRow.Append(cell);
-                    colIndex++;
-                }
-                sheetData.Append(excelRow);
-            }
-
-            SheetFormatProperties formattingProps = new SheetFormatProperties()
-            {
-                DefaultRowHeight = 20D,
-                DefaultColumnWidth = 20D
-            };
-
-            worksheet.Append(formattingProps);
-            worksheet.Append(sheetData);
-            worksheetPart.Worksheet = worksheet;
-        }*/
-
         private void CreateWorkSheet(WorksheetPart worksheetPart, DataGridView dgv)
         {
             Worksheet worksheet = new Worksheet();
