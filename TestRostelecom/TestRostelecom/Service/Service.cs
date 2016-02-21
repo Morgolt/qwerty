@@ -41,20 +41,12 @@ namespace TestRostelecom.Service
             client.FullName = clientName;
 
             string message;
-            if (this.secondaryRepo.GetClientByFullName(clientName) == null)
-            {
-                this.secondaryRepo.CreateClient(client);
-                //client=this.secondaryRepo.GetClientByFullName(clientName);
-                message = "Клиент добавлен и заявка создана";
-            }
-            else
-            {
-                message = "Заявка добавлена успешно";
-            }
+            this.secondaryRepo.CreateClient(client);
+            message = "Заявка добавлена успешно";
 
             Requests request = new Requests();
 
-            request.ClientId = this.secondaryRepo.GetClientByFullName(clientName).Id;
+            request.ClientId = client.Id;
             request.MasterId = masterId;
             request.OperatorId = operatorId;
             request.ServiceId = serviceId;
@@ -66,19 +58,7 @@ namespace TestRostelecom.Service
 
             requestRepo.CreateRequest(request);
             return message;
-           
-        }
-        public Clients GetClientExact(string fullName)
-        {
-            Clients client = secondaryRepo.GetClientByFullName(fullName);
-            if (client != null)
-            {
-                return secondaryRepo.GetClientById(client.Id);
-            }
-            else
-            {
-                return new Clients();
-            }
+
         }
         public Masters GetMasterExact(int id)
         {
@@ -100,7 +80,9 @@ namespace TestRostelecom.Service
         public string UpdateRequest(Requests request, string clientName, int masterId, int operatorId, int serviceId, string comment, 
             string adress, DateTime requestDate, DateTime closeDate, DateTime dateOfDeparture)
         {
-            request.Clients = GetClientExact(clientName);
+            Clients client = new Clients();
+            client.FullName = clientName;
+            request.Clients = secondaryRepo.CreateClient(client);
             request.Masters = GetMasterExact(masterId);
             request.Operators = GetOperatorExact(operatorId);
             request.Services = GetServiceExact(serviceId);
