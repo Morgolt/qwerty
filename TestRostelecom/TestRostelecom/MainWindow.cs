@@ -57,7 +57,8 @@ namespace TestRostelecom
         
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-  
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.ShowDialog();
         }
 
         private void addRequestToolStripMenuItem_Click(object sender, EventArgs e)
