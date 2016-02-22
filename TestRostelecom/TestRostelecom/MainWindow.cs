@@ -86,14 +86,15 @@ namespace TestRostelecom
         private void exportToExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Excel 97-2003 files (*.xls)|*.xls|Excel 2007/2010/2013/2016 files|*.xlsx";
+            sfd.Filter = "Excel 2007/2010/2013/2016 files(.xlsx)|*.xlsx|Все файлы|*.*";
             sfd.RestoreDirectory = true;
             if (sfd.ShowDialog(this) == DialogResult.OK)
             {
                 string path = sfd.FileName;
+                
                 ExportToExcel export = new ExportToExcel();
                 export.ExportToXLS(this.dataGridView1, path);
-                MessageBox.Show(this, "OK", "Экспорт в Excel");
+                MessageBox.Show(this, "Файл успешно сохранен", "Экспорт в Excel");
             }
         }
 

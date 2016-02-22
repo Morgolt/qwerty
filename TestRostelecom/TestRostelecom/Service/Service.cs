@@ -10,10 +10,9 @@ namespace TestRostelecom.Service
 {
     public class Service
     {
-        //test case public
-        public RequestRepository requestRepo;
-        public SecondaryRepository secondaryRepo;
-        public RequestDatabaseDataContext requestDBContext;
+        private RequestRepository requestRepo;
+        private SecondaryRepository secondaryRepo;
+        private RequestDatabaseDataContext requestDBContext;
 
         public Service()
         {
